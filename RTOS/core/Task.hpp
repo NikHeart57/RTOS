@@ -39,11 +39,13 @@ struct Task
 	uint32_t lastRunTime;     // ¬рем€ последнего запуска (на основе системных тиков)
 
 	//  онструктор по умолчанию
-	Task() : function(nullptr), state(TaskState::READY), priority(TaskPriority::IDLE), 
+	Task()		: function(nullptr), state(TaskState::READY), 
+				priority(TaskPriority::IDLE), 
 				tickCounter(0), tickInterval(0), lastRunTime(0) {}
     
 	//  онструктор дл€ удобного создани€
-	Task(TaskFunction func, TaskPriority prio) : function(func), state(TaskState::READY), 
-			priority(prio), tickCounter(0), tickInterval(0), lastRunTime(0) {}
+	Task(TaskFunction func, TaskPriority prio)	: function(func), state(TaskState::READY), 
+												priority(prio), tickCounter(0), 
+												tickInterval(0), lastRunTime(0) {}
 };
 
