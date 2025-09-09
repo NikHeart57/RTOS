@@ -99,7 +99,7 @@ Discarded input sections
  .text._Z16UART_ReceiveBytev
                 0x00000000       0x2c drivers/UART/UART.o
  .text._Z18UART_FlushRxBufferv
-                0x00000000        0xa drivers/UART/UART.o
+                0x00000000        0xe drivers/UART/UART.o
  .text._Z18UART_SetRxCallbackPFvcE
                 0x00000000        0xa drivers/UART/UART.o
  .text          0x00000000        0x0 main.o

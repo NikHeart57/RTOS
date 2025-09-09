@@ -263,9 +263,11 @@ uint8_t UART_DataAvailable(void)
  * @brief Очистка буфера приема
  * @note Сбрасывает индексы и удаляет все непрочитанные данные
  */
-void UART_FlushRxBuffer(void) 
+void UART_FlushRxBuffer(void)
 {
-    uart_rx_head = uart_rx_tail = 0;
+	cli();
+	uart_rx_head = uart_rx_tail = 0;
+	sei();
 }
 
 /**
