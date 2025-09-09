@@ -1,14 +1,7 @@
-#include "Scheduler.hpp"
-#include "SystemKernel.hpp" // Теперь здесь можно включать
+#include "TaskManager.hpp"
 #include <avr/io.h>
-#include <avr/interrupt.h>
 
-ISR(TIMER1_COMPA_vect) {
-	SystemKernel::getSchedulerForISR()->tick();
-}
-
-// Определение конструктора
-Scheduler::Scheduler()
+TaskManager::TaskManager()
 {
 	taskCount = 0;
 	systemTicks = 0;
@@ -19,21 +12,9 @@ Scheduler::Scheduler()
 	{
 		taskList[i] = nullptr;
 	}
-	// taskPool автоматически инициализируется конструкторами по умолчанию
 }
 
-void Scheduler::init() {
-	// Настройка Timer1 для генерации прерывания по совпадению каждую 1 мс
-	// (Пример для ATmega328P, F_CPU=16MHz)
-	TCCR1A = 0;
-	TCCR1B = (1 << WGM12) | (1 << CS11) | (1 << CS10); // CTC mode, prescaler 64
-	OCR1A = 249; // Compare value для 1ms: (16000000 / 64 / 1000) - 1 = 249
-	TIMSK = (1 << OCIE1A); // Enable compare match interrupt
-
-	sei(); // Глобальное разрешение прерываний
-}
-
-void Scheduler::tick() {
+void TaskManager::tick() {
 	systemTicks++;
 
 	// Обновляем состояния всех задач
@@ -50,7 +31,7 @@ void Scheduler::tick() {
 	}
 }
 
-void Scheduler::dispatch() {
+void TaskManager::dispatch() {
 	// Поиск задачи с наивысшим приоритетом, готовой к выполнению (READY)
 	int8_t highestPriorityTaskIndex = -1;
 	TaskPriority highestPriority = TaskPriority::IDLE;
@@ -65,7 +46,7 @@ void Scheduler::dispatch() {
 
 	// Если нашли готовую задачу - выполняем ее
 	if(highestPriorityTaskIndex >= 0) {
-		currentTask = taskList[highestPriorityTaskIndex]; // <-- ЗАПОМИНАЕМ ТЕКУЩУЮ ЗАДАЧУ
+		currentTask = taskList[highestPriorityTaskIndex];
 		currentTask->state = TaskState::RUNNING;
 		currentTask->lastRunTime = systemTicks;
 
@@ -77,25 +58,23 @@ void Scheduler::dispatch() {
 		if(currentTask->state == TaskState::RUNNING) {
 			currentTask->state = TaskState::READY;
 		}
-		currentTask = nullptr; // <-- СБРАСЫВАЕМ УКАЗАТЕЛЬ ПОСЛЕ ВЫПОЛНЕНИЯ
+		currentTask = nullptr;
 	}
-
-	// Если ни одна задача не готова, можно выполнить задачу холостого хода (idle)
-	// или перевести МК в режим пониженного энергопотребления.
 }
 
-bool Scheduler::addTask(TaskFunction function, TaskPriority priority)
+bool TaskManager::addTask(TaskFunction function, TaskPriority priority)
 {
 	if(taskCount >= MAX_TASKS) return false;
-		
+	
 	// Инициализируем задачу в заранее выделенной памяти
 	taskList[taskCount] = &taskPool[taskCount];
-	*taskList[taskCount] = Task(function, priority); // Используем конструктор
+	*taskList[taskCount] = Task(function, priority);
 	taskCount++;
 	return true;
 }
 
-void Scheduler::suspendTask(TaskFunction function) {
+void TaskManager::suspendTask(TaskFunction function)
+{
 	for(uint8_t i = 0; i < taskCount; i++) {
 		if(taskList[i]->function == function) {
 			taskList[i]->state = TaskState::SUSPENDED;
@@ -104,7 +83,8 @@ void Scheduler::suspendTask(TaskFunction function) {
 	}
 }
 
-void Scheduler::resumeTask(TaskFunction function) {
+void TaskManager::resumeTask(TaskFunction function)
+{
 	for(uint8_t i = 0; i < taskCount; i++) {
 		if(taskList[i]->function == function) {
 			taskList[i]->state = TaskState::READY;
@@ -113,14 +93,9 @@ void Scheduler::resumeTask(TaskFunction function) {
 	}
 }
 
-void Scheduler::sleep(uint32_t ticksToSleep) {
-	// Эта функция вызывается ИЗНУТРИ самой задачи.
-	// Мы знаем, какая задача выполняется в данный момент (currentTask != nullptr)
+void TaskManager::sleep(uint32_t ticksToSleep) {
 	if (currentTask) {
 		currentTask->state = TaskState::SLEEPING;
 		currentTask->tickCounter = ticksToSleep;
 	}
-	// Если sleep вызван не из задачи (что невозможно), просто игнорируем.
 }
-
-

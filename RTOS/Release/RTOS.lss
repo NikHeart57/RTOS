@@ -3,23 +3,23 @@ RTOS.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         000008e4  00000000  00000000  00000094  2**1
+  0 .text         0000090a  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .data         00000050  00800060  000008e4  00000978  2**0
+  1 .data         00000052  00800060  0000090a  0000099e  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  2 .bss          0000017b  008000b0  008000b0  000009c8  2**0
+  2 .bss          0000017d  008000b2  008000b2  000009f0  2**0
                   ALLOC
-  3 .comment      00000030  00000000  00000000  000009c8  2**0
+  3 .comment      00000030  00000000  00000000  000009f0  2**0
                   CONTENTS, READONLY
-  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000009f8  2**2
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000a20  2**2
                   CONTENTS, READONLY
-  5 .debug_info   000004e6  00000000  00000000  00000a34  2**0
+  5 .debug_info   000004e6  00000000  00000000  00000a5c  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_abbrev 000004a3  00000000  00000000  00000f1a  2**0
+  6 .debug_abbrev 000004a3  00000000  00000000  00000f42  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_line   00000116  00000000  00000000  000013bd  2**0
+  7 .debug_line   00000116  00000000  00000000  000013e5  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_str    00000196  00000000  00000000  000014d3  2**0
+  8 .debug_str    00000196  00000000  00000000  000014fb  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -32,15 +32,15 @@ Disassembly of section .text:
   10:	0c 94 54 00 	jmp	0xa8	; 0xa8 <__bad_interrupt>
   14:	0c 94 54 00 	jmp	0xa8	; 0xa8 <__bad_interrupt>
   18:	0c 94 54 00 	jmp	0xa8	; 0xa8 <__bad_interrupt>
-  1c:	0c 94 dc 00 	jmp	0x1b8	; 0x1b8 <__vector_7>
+  1c:	0c 94 a9 00 	jmp	0x152	; 0x152 <__vector_7>
   20:	0c 94 54 00 	jmp	0xa8	; 0xa8 <__bad_interrupt>
   24:	0c 94 54 00 	jmp	0xa8	; 0xa8 <__bad_interrupt>
   28:	0c 94 54 00 	jmp	0xa8	; 0xa8 <__bad_interrupt>
   2c:	0c 94 54 00 	jmp	0xa8	; 0xa8 <__bad_interrupt>
   30:	0c 94 54 00 	jmp	0xa8	; 0xa8 <__bad_interrupt>
-  34:	0c 94 8e 02 	jmp	0x51c	; 0x51c <__vector_13>
+  34:	0c 94 9f 02 	jmp	0x53e	; 0x53e <__vector_13>
   38:	0c 94 54 00 	jmp	0xa8	; 0xa8 <__bad_interrupt>
-  3c:	0c 94 cc 02 	jmp	0x598	; 0x598 <__vector_15>
+  3c:	0c 94 dd 02 	jmp	0x5ba	; 0x5ba <__vector_15>
   40:	0c 94 54 00 	jmp	0xa8	; 0xa8 <__bad_interrupt>
   44:	0c 94 54 00 	jmp	0xa8	; 0xa8 <__bad_interrupt>
   48:	0c 94 54 00 	jmp	0xa8	; 0xa8 <__bad_interrupt>
@@ -48,10 +48,10 @@ Disassembly of section .text:
   50:	0c 94 54 00 	jmp	0xa8	; 0xa8 <__bad_interrupt>
 
 00000054 <__ctors_start>:
-  54:	98 03       	fmulsu	r17, r16
+  54:	ab 03       	fmulsu	r18, r19
 
 00000056 <__ctors_end>:
-  56:	9c 03       	fmulsu	r17, r20
+  56:	af 03       	fmulsu	r18, r23
 
 00000058 <__dtors_end>:
   58:	11 24       	eor	r1, r1
@@ -65,18 +65,18 @@ Disassembly of section .text:
   64:	10 e0       	ldi	r17, 0x00	; 0
   66:	a0 e6       	ldi	r26, 0x60	; 96
   68:	b0 e0       	ldi	r27, 0x00	; 0
-  6a:	e4 ee       	ldi	r30, 0xE4	; 228
-  6c:	f8 e0       	ldi	r31, 0x08	; 8
+  6a:	ea e0       	ldi	r30, 0x0A	; 10
+  6c:	f9 e0       	ldi	r31, 0x09	; 9
   6e:	02 c0       	rjmp	.+4      	; 0x74 <__do_copy_data+0x10>
   70:	05 90       	lpm	r0, Z+
   72:	0d 92       	st	X+, r0
-  74:	a0 3b       	cpi	r26, 0xB0	; 176
+  74:	a2 3b       	cpi	r26, 0xB2	; 178
   76:	b1 07       	cpc	r27, r17
   78:	d9 f7       	brne	.-10     	; 0x70 <__do_copy_data+0xc>
 
 0000007a <__do_clear_bss>:
   7a:	22 e0       	ldi	r18, 0x02	; 2
-  7c:	a0 eb       	ldi	r26, 0xB0	; 176
+  7c:	a2 eb       	ldi	r26, 0xB2	; 178
   7e:	b0 e0       	ldi	r27, 0x00	; 0
   80:	01 c0       	rjmp	.+2      	; 0x84 <.do_clear_bss_start>
 
@@ -84,7 +84,7 @@ Disassembly of section .text:
   82:	1d 92       	st	X+, r1
 
 00000084 <.do_clear_bss_start>:
-  84:	ab 32       	cpi	r26, 0x2B	; 43
+  84:	af 32       	cpi	r26, 0x2F	; 47
   86:	b2 07       	cpc	r27, r18
   88:	e1 f7       	brne	.-8      	; 0x82 <.do_clear_bss_loop>
 
@@ -95,1071 +95,1093 @@ Disassembly of section .text:
   90:	04 c0       	rjmp	.+8      	; 0x9a <__do_global_ctors+0x10>
   92:	21 97       	sbiw	r28, 0x01	; 1
   94:	fe 01       	movw	r30, r28
-  96:	0e 94 2a 04 	call	0x854	; 0x854 <__tablejump2__>
+  96:	0e 94 3d 04 	call	0x87a	; 0x87a <__tablejump2__>
   9a:	ca 32       	cpi	r28, 0x2A	; 42
   9c:	d1 07       	cpc	r29, r17
   9e:	c9 f7       	brne	.-14     	; 0x92 <__do_global_ctors+0x8>
-  a0:	0e 94 77 03 	call	0x6ee	; 0x6ee <main>
-  a4:	0c 94 65 04 	jmp	0x8ca	; 0x8ca <__do_global_dtors>
+  a0:	0e 94 88 03 	call	0x710	; 0x710 <main>
+  a4:	0c 94 78 04 	jmp	0x8f0	; 0x8f0 <__do_global_dtors>
 
 000000a8 <__bad_interrupt>:
   a8:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
 
-000000ac <_ZN9SchedulerC1Ev>:
-  ac:	cf 93       	push	r28
-  ae:	df 93       	push	r29
-  b0:	fc 01       	movw	r30, r24
-  b2:	9c 01       	movw	r18, r24
-  b4:	2c 54       	subi	r18, 0x4C	; 76
-  b6:	3f 4f       	sbci	r19, 0xFF	; 255
-  b8:	11 82       	std	Z+1, r1	; 0x01
-  ba:	10 82       	st	Z, r1
-  bc:	13 82       	std	Z+3, r1	; 0x03
-  be:	12 82       	std	Z+2, r1	; 0x02
-  c0:	15 82       	std	Z+5, r1	; 0x05
-  c2:	14 82       	std	Z+4, r1	; 0x04
-  c4:	16 82       	std	Z+6, r1	; 0x06
-  c6:	17 82       	std	Z+7, r1	; 0x07
-  c8:	10 86       	std	Z+8, r1	; 0x08
-  ca:	11 86       	std	Z+9, r1	; 0x09
-  cc:	12 86       	std	Z+10, r1	; 0x0a
-  ce:	13 86       	std	Z+11, r1	; 0x0b
-  d0:	14 86       	std	Z+12, r1	; 0x0c
-  d2:	15 86       	std	Z+13, r1	; 0x0d
-  d4:	16 86       	std	Z+14, r1	; 0x0e
-  d6:	17 86       	std	Z+15, r1	; 0x0f
-  d8:	10 8a       	std	Z+16, r1	; 0x10
-  da:	11 8a       	std	Z+17, r1	; 0x11
-  dc:	72 96       	adiw	r30, 0x12	; 18
-  de:	e2 17       	cp	r30, r18
-  e0:	f3 07       	cpc	r31, r19
-  e2:	51 f7       	brne	.-44     	; 0xb8 <_ZN9SchedulerC1Ev+0xc>
-  e4:	dc 01       	movw	r26, r24
-  e6:	a8 53       	subi	r26, 0x38	; 56
-  e8:	bf 4f       	sbci	r27, 0xFF	; 255
-  ea:	1c 92       	st	X, r1
-  ec:	ec 01       	movw	r28, r24
-  ee:	c7 53       	subi	r28, 0x37	; 55
-  f0:	df 4f       	sbci	r29, 0xFF	; 255
-  f2:	18 82       	st	Y, r1
-  f4:	19 82       	std	Y+1, r1	; 0x01
-  f6:	1a 82       	std	Y+2, r1	; 0x02
-  f8:	1b 82       	std	Y+3, r1	; 0x03
-  fa:	24 96       	adiw	r28, 0x04	; 4
-  fc:	19 82       	std	Y+1, r1	; 0x01
-  fe:	18 82       	st	Y, r1
- 100:	11 92       	st	Z+, r1
- 102:	11 92       	st	Z+, r1
- 104:	ea 17       	cp	r30, r26
- 106:	fb 07       	cpc	r31, r27
- 108:	d9 f7       	brne	.-10     	; 0x100 <_ZN9SchedulerC1Ev+0x54>
- 10a:	df 91       	pop	r29
- 10c:	cf 91       	pop	r28
- 10e:	08 95       	ret
+000000ac <_ZN15ResourceManagerC1Ev>:
+  ac:	0f 93       	push	r16
+  ae:	1f 93       	push	r17
+  b0:	cf 93       	push	r28
+  b2:	df 93       	push	r29
+  b4:	cd b7       	in	r28, 0x3d	; 61
+  b6:	de b7       	in	r29, 0x3e	; 62
+  b8:	29 97       	sbiw	r28, 0x09	; 9
+  ba:	0f b6       	in	r0, 0x3f	; 63
+  bc:	f8 94       	cli
+  be:	de bf       	out	0x3e, r29	; 62
+  c0:	0f be       	out	0x3f, r0	; 63
+  c2:	cd bf       	out	0x3d, r28	; 61
+  c4:	8c 01       	movw	r16, r24
+  c6:	81 e0       	ldi	r24, 0x01	; 1
+  c8:	89 83       	std	Y+1, r24	; 0x01
+  ca:	93 e0       	ldi	r25, 0x03	; 3
+  cc:	9a 83       	std	Y+2, r25	; 0x02
+  ce:	1b 82       	std	Y+3, r1	; 0x03
+  d0:	1c 82       	std	Y+4, r1	; 0x04
+  d2:	8d 83       	std	Y+5, r24	; 0x05
+  d4:	80 e8       	ldi	r24, 0x80	; 128
+  d6:	95 e2       	ldi	r25, 0x25	; 37
+  d8:	a0 e0       	ldi	r26, 0x00	; 0
+  da:	b0 e0       	ldi	r27, 0x00	; 0
+  dc:	8e 83       	std	Y+6, r24	; 0x06
+  de:	9f 83       	std	Y+7, r25	; 0x07
+  e0:	a8 87       	std	Y+8, r26	; 0x08
+  e2:	b9 87       	std	Y+9, r27	; 0x09
+  e4:	be 01       	movw	r22, r28
+  e6:	6f 5f       	subi	r22, 0xFF	; 255
+  e8:	7f 4f       	sbci	r23, 0xFF	; 255
+  ea:	c8 01       	movw	r24, r16
+  ec:	0e 94 b3 03 	call	0x766	; 0x766 <_ZN13UART_ResourceC1ERKNS_6ConfigE>
+  f0:	f8 01       	movw	r30, r16
+  f2:	12 86       	std	Z+10, r1	; 0x0a
+  f4:	29 96       	adiw	r28, 0x09	; 9
+  f6:	0f b6       	in	r0, 0x3f	; 63
+  f8:	f8 94       	cli
+  fa:	de bf       	out	0x3e, r29	; 62
+  fc:	0f be       	out	0x3f, r0	; 63
+  fe:	cd bf       	out	0x3d, r28	; 61
+ 100:	df 91       	pop	r29
+ 102:	cf 91       	pop	r28
+ 104:	1f 91       	pop	r17
+ 106:	0f 91       	pop	r16
+ 108:	08 95       	ret
 
-00000110 <_ZN9Scheduler4initEv>:
- 110:	1f bc       	out	0x2f, r1	; 47
- 112:	8b e0       	ldi	r24, 0x0B	; 11
- 114:	8e bd       	out	0x2e, r24	; 46
- 116:	89 ef       	ldi	r24, 0xF9	; 249
- 118:	90 e0       	ldi	r25, 0x00	; 0
- 11a:	9b bd       	out	0x2b, r25	; 43
- 11c:	8a bd       	out	0x2a, r24	; 42
- 11e:	80 e1       	ldi	r24, 0x10	; 16
- 120:	89 bf       	out	0x39, r24	; 57
- 122:	78 94       	sei
- 124:	08 95       	ret
+0000010a <_ZN15ResourceManager7getUARTEv>:
+ 10a:	cf 93       	push	r28
+ 10c:	df 93       	push	r29
+ 10e:	ec 01       	movw	r28, r24
+ 110:	8a 85       	ldd	r24, Y+10	; 0x0a
+ 112:	88 23       	and	r24, r24
+ 114:	29 f0       	breq	.+10     	; 0x120 <_ZN15ResourceManager7getUARTEv+0x16>
+ 116:	60 e6       	ldi	r22, 0x60	; 96
+ 118:	70 e0       	ldi	r23, 0x00	; 0
+ 11a:	ce 01       	movw	r24, r28
+ 11c:	0e 94 07 04 	call	0x80e	; 0x80e <_ZN13UART_Resource7printlnEPKc>
+ 120:	81 e0       	ldi	r24, 0x01	; 1
+ 122:	8a 87       	std	Y+10, r24	; 0x0a
+ 124:	ce 01       	movw	r24, r28
+ 126:	df 91       	pop	r29
+ 128:	cf 91       	pop	r28
+ 12a:	08 95       	ret
 
-00000126 <_ZN9Scheduler4tickEv>:
- 126:	cf 93       	push	r28
- 128:	df 93       	push	r29
- 12a:	dc 01       	movw	r26, r24
+0000012c <_ZN15ResourceManager11releaseUARTEv>:
  12c:	fc 01       	movw	r30, r24
- 12e:	e7 53       	subi	r30, 0x37	; 55
- 130:	ff 4f       	sbci	r31, 0xFF	; 255
- 132:	40 81       	ld	r20, Z
- 134:	51 81       	ldd	r21, Z+1	; 0x01
- 136:	62 81       	ldd	r22, Z+2	; 0x02
- 138:	73 81       	ldd	r23, Z+3	; 0x03
- 13a:	4f 5f       	subi	r20, 0xFF	; 255
- 13c:	5f 4f       	sbci	r21, 0xFF	; 255
- 13e:	6f 4f       	sbci	r22, 0xFF	; 255
- 140:	7f 4f       	sbci	r23, 0xFF	; 255
- 142:	40 83       	st	Z, r20
- 144:	51 83       	std	Z+1, r21	; 0x01
- 146:	62 83       	std	Z+2, r22	; 0x02
- 148:	73 83       	std	Z+3, r23	; 0x03
- 14a:	90 e0       	ldi	r25, 0x00	; 0
- 14c:	ed 01       	movw	r28, r26
- 14e:	c8 53       	subi	r28, 0x38	; 56
- 150:	df 4f       	sbci	r29, 0xFF	; 255
- 152:	88 81       	ld	r24, Y
- 154:	98 17       	cp	r25, r24
- 156:	68 f5       	brcc	.+90     	; 0x1b2 <_ZN9Scheduler4tickEv+0x8c>
- 158:	9d 01       	movw	r18, r26
- 15a:	29 0f       	add	r18, r25
- 15c:	31 1d       	adc	r19, r1
- 15e:	29 0f       	add	r18, r25
- 160:	31 1d       	adc	r19, r1
- 162:	f9 01       	movw	r30, r18
- 164:	ec 54       	subi	r30, 0x4C	; 76
- 166:	ff 4f       	sbci	r31, 0xFF	; 255
- 168:	01 90       	ld	r0, Z+
- 16a:	f0 81       	ld	r31, Z
- 16c:	e0 2d       	mov	r30, r0
- 16e:	22 81       	ldd	r18, Z+2	; 0x02
- 170:	33 81       	ldd	r19, Z+3	; 0x03
- 172:	22 30       	cpi	r18, 0x02	; 2
- 174:	31 05       	cpc	r19, r1
- 176:	d9 f4       	brne	.+54     	; 0x1ae <_ZN9Scheduler4tickEv+0x88>
- 178:	46 81       	ldd	r20, Z+6	; 0x06
- 17a:	57 81       	ldd	r21, Z+7	; 0x07
- 17c:	60 85       	ldd	r22, Z+8	; 0x08
- 17e:	71 85       	ldd	r23, Z+9	; 0x09
- 180:	41 15       	cp	r20, r1
- 182:	51 05       	cpc	r21, r1
- 184:	61 05       	cpc	r22, r1
- 186:	71 05       	cpc	r23, r1
- 188:	41 f0       	breq	.+16     	; 0x19a <_ZN9Scheduler4tickEv+0x74>
- 18a:	41 50       	subi	r20, 0x01	; 1
- 18c:	51 09       	sbc	r21, r1
- 18e:	61 09       	sbc	r22, r1
- 190:	71 09       	sbc	r23, r1
- 192:	46 83       	std	Z+6, r20	; 0x06
- 194:	57 83       	std	Z+7, r21	; 0x07
- 196:	60 87       	std	Z+8, r22	; 0x08
- 198:	71 87       	std	Z+9, r23	; 0x09
- 19a:	46 81       	ldd	r20, Z+6	; 0x06
- 19c:	57 81       	ldd	r21, Z+7	; 0x07
- 19e:	60 85       	ldd	r22, Z+8	; 0x08
- 1a0:	71 85       	ldd	r23, Z+9	; 0x09
- 1a2:	45 2b       	or	r20, r21
- 1a4:	46 2b       	or	r20, r22
- 1a6:	47 2b       	or	r20, r23
- 1a8:	11 f4       	brne	.+4      	; 0x1ae <_ZN9Scheduler4tickEv+0x88>
- 1aa:	13 82       	std	Z+3, r1	; 0x03
- 1ac:	12 82       	std	Z+2, r1	; 0x02
- 1ae:	9f 5f       	subi	r25, 0xFF	; 255
- 1b0:	d0 cf       	rjmp	.-96     	; 0x152 <_ZN9Scheduler4tickEv+0x2c>
- 1b2:	df 91       	pop	r29
- 1b4:	cf 91       	pop	r28
- 1b6:	08 95       	ret
+ 12e:	12 86       	std	Z+10, r1	; 0x0a
+ 130:	08 95       	ret
 
-000001b8 <__vector_7>:
- 1b8:	1f 92       	push	r1
- 1ba:	0f 92       	push	r0
- 1bc:	0f b6       	in	r0, 0x3f	; 63
- 1be:	0f 92       	push	r0
- 1c0:	11 24       	eor	r1, r1
- 1c2:	2f 93       	push	r18
- 1c4:	3f 93       	push	r19
- 1c6:	4f 93       	push	r20
- 1c8:	5f 93       	push	r21
- 1ca:	6f 93       	push	r22
- 1cc:	7f 93       	push	r23
- 1ce:	8f 93       	push	r24
- 1d0:	9f 93       	push	r25
- 1d2:	af 93       	push	r26
- 1d4:	bf 93       	push	r27
- 1d6:	ef 93       	push	r30
- 1d8:	ff 93       	push	r31
- 1da:	80 91 b0 00 	lds	r24, 0x00B0	; 0x8000b0 <__data_end>
- 1de:	90 91 b1 00 	lds	r25, 0x00B1	; 0x8000b1 <__data_end+0x1>
- 1e2:	0e 94 93 00 	call	0x126	; 0x126 <_ZN9Scheduler4tickEv>
- 1e6:	ff 91       	pop	r31
- 1e8:	ef 91       	pop	r30
- 1ea:	bf 91       	pop	r27
- 1ec:	af 91       	pop	r26
- 1ee:	9f 91       	pop	r25
- 1f0:	8f 91       	pop	r24
- 1f2:	7f 91       	pop	r23
- 1f4:	6f 91       	pop	r22
- 1f6:	5f 91       	pop	r21
- 1f8:	4f 91       	pop	r20
- 1fa:	3f 91       	pop	r19
- 1fc:	2f 91       	pop	r18
- 1fe:	0f 90       	pop	r0
- 200:	0f be       	out	0x3f, r0	; 63
- 202:	0f 90       	pop	r0
- 204:	1f 90       	pop	r1
- 206:	18 95       	reti
+00000132 <_ZN15ResourceManager13initializeAllEv>:
+ 132:	cf 93       	push	r28
+ 134:	df 93       	push	r29
+ 136:	ec 01       	movw	r28, r24
+ 138:	40 e0       	ldi	r20, 0x00	; 0
+ 13a:	51 ee       	ldi	r21, 0xE1	; 225
+ 13c:	60 e0       	ldi	r22, 0x00	; 0
+ 13e:	70 e0       	ldi	r23, 0x00	; 0
+ 140:	0e 94 e0 03 	call	0x7c0	; 0x7c0 <_ZN13UART_Resource5startEm>
+ 144:	6d e7       	ldi	r22, 0x7D	; 125
+ 146:	70 e0       	ldi	r23, 0x00	; 0
+ 148:	ce 01       	movw	r24, r28
+ 14a:	df 91       	pop	r29
+ 14c:	cf 91       	pop	r28
+ 14e:	0c 94 07 04 	jmp	0x80e	; 0x80e <_ZN13UART_Resource7printlnEPKc>
 
-00000208 <_ZN9Scheduler8dispatchEv>:
- 208:	cf 93       	push	r28
- 20a:	df 93       	push	r29
- 20c:	fc 01       	movw	r30, r24
- 20e:	e8 53       	subi	r30, 0x38	; 56
- 210:	ff 4f       	sbci	r31, 0xFF	; 255
- 212:	c0 81       	ld	r28, Z
- 214:	74 97       	sbiw	r30, 0x14	; 20
- 216:	20 e0       	ldi	r18, 0x00	; 0
- 218:	40 e0       	ldi	r20, 0x00	; 0
- 21a:	50 e0       	ldi	r21, 0x00	; 0
- 21c:	3f ef       	ldi	r19, 0xFF	; 255
- 21e:	2c 17       	cp	r18, r28
- 220:	99 f0       	breq	.+38     	; 0x248 <_ZN9Scheduler8dispatchEv+0x40>
- 222:	a1 91       	ld	r26, Z+
- 224:	b1 91       	ld	r27, Z+
- 226:	12 96       	adiw	r26, 0x02	; 2
- 228:	6d 91       	ld	r22, X+
- 22a:	7c 91       	ld	r23, X
- 22c:	13 97       	sbiw	r26, 0x03	; 3
- 22e:	67 2b       	or	r22, r23
- 230:	49 f4       	brne	.+18     	; 0x244 <_ZN9Scheduler8dispatchEv+0x3c>
- 232:	14 96       	adiw	r26, 0x04	; 4
- 234:	6d 91       	ld	r22, X+
- 236:	7c 91       	ld	r23, X
- 238:	15 97       	sbiw	r26, 0x05	; 5
- 23a:	46 17       	cp	r20, r22
- 23c:	57 07       	cpc	r21, r23
- 23e:	14 f4       	brge	.+4      	; 0x244 <_ZN9Scheduler8dispatchEv+0x3c>
- 240:	32 2f       	mov	r19, r18
- 242:	ab 01       	movw	r20, r22
- 244:	2f 5f       	subi	r18, 0xFF	; 255
- 246:	eb cf       	rjmp	.-42     	; 0x21e <_ZN9Scheduler8dispatchEv+0x16>
- 248:	37 fd       	sbrc	r19, 7
- 24a:	2e c0       	rjmp	.+92     	; 0x2a8 <_ZN9Scheduler8dispatchEv+0xa0>
- 24c:	fc 01       	movw	r30, r24
- 24e:	22 e0       	ldi	r18, 0x02	; 2
- 250:	32 02       	muls	r19, r18
- 252:	e0 0d       	add	r30, r0
- 254:	f1 1d       	adc	r31, r1
- 256:	11 24       	eor	r1, r1
- 258:	ec 54       	subi	r30, 0x4C	; 76
- 25a:	ff 4f       	sbci	r31, 0xFF	; 255
- 25c:	01 90       	ld	r0, Z+
- 25e:	f0 81       	ld	r31, Z
- 260:	e0 2d       	mov	r30, r0
- 262:	ec 01       	movw	r28, r24
- 264:	c3 53       	subi	r28, 0x33	; 51
- 266:	df 4f       	sbci	r29, 0xFF	; 255
- 268:	f9 83       	std	Y+1, r31	; 0x01
- 26a:	e8 83       	st	Y, r30
- 26c:	21 e0       	ldi	r18, 0x01	; 1
- 26e:	30 e0       	ldi	r19, 0x00	; 0
- 270:	33 83       	std	Z+3, r19	; 0x03
- 272:	22 83       	std	Z+2, r18	; 0x02
- 274:	dc 01       	movw	r26, r24
- 276:	a7 53       	subi	r26, 0x37	; 55
- 278:	bf 4f       	sbci	r27, 0xFF	; 255
- 27a:	8d 91       	ld	r24, X+
- 27c:	9d 91       	ld	r25, X+
- 27e:	0d 90       	ld	r0, X+
- 280:	bc 91       	ld	r27, X
- 282:	a0 2d       	mov	r26, r0
- 284:	86 87       	std	Z+14, r24	; 0x0e
- 286:	97 87       	std	Z+15, r25	; 0x0f
- 288:	a0 8b       	std	Z+16, r26	; 0x10
- 28a:	b1 8b       	std	Z+17, r27	; 0x11
- 28c:	01 90       	ld	r0, Z+
- 28e:	f0 81       	ld	r31, Z
- 290:	e0 2d       	mov	r30, r0
- 292:	09 95       	icall
- 294:	e8 81       	ld	r30, Y
- 296:	f9 81       	ldd	r31, Y+1	; 0x01
- 298:	82 81       	ldd	r24, Z+2	; 0x02
- 29a:	93 81       	ldd	r25, Z+3	; 0x03
- 29c:	01 97       	sbiw	r24, 0x01	; 1
- 29e:	11 f4       	brne	.+4      	; 0x2a4 <_ZN9Scheduler8dispatchEv+0x9c>
- 2a0:	13 82       	std	Z+3, r1	; 0x03
- 2a2:	12 82       	std	Z+2, r1	; 0x02
- 2a4:	19 82       	std	Y+1, r1	; 0x01
- 2a6:	18 82       	st	Y, r1
- 2a8:	df 91       	pop	r29
- 2aa:	cf 91       	pop	r28
- 2ac:	08 95       	ret
+00000152 <__vector_7>:
+ 152:	1f 92       	push	r1
+ 154:	0f 92       	push	r0
+ 156:	0f b6       	in	r0, 0x3f	; 63
+ 158:	0f 92       	push	r0
+ 15a:	11 24       	eor	r1, r1
+ 15c:	2f 93       	push	r18
+ 15e:	3f 93       	push	r19
+ 160:	4f 93       	push	r20
+ 162:	5f 93       	push	r21
+ 164:	6f 93       	push	r22
+ 166:	7f 93       	push	r23
+ 168:	8f 93       	push	r24
+ 16a:	9f 93       	push	r25
+ 16c:	af 93       	push	r26
+ 16e:	bf 93       	push	r27
+ 170:	ef 93       	push	r30
+ 172:	ff 93       	push	r31
+ 174:	80 91 b4 00 	lds	r24, 0x00B4	; 0x8000b4 <_ZN12SystemKernel26taskManagerInstanceForISR_E>
+ 178:	90 91 b5 00 	lds	r25, 0x00B5	; 0x8000b5 <_ZN12SystemKernel26taskManagerInstanceForISR_E+0x1>
+ 17c:	0e 94 3b 01 	call	0x276	; 0x276 <_ZN11TaskManager4tickEv>
+ 180:	ff 91       	pop	r31
+ 182:	ef 91       	pop	r30
+ 184:	bf 91       	pop	r27
+ 186:	af 91       	pop	r26
+ 188:	9f 91       	pop	r25
+ 18a:	8f 91       	pop	r24
+ 18c:	7f 91       	pop	r23
+ 18e:	6f 91       	pop	r22
+ 190:	5f 91       	pop	r21
+ 192:	4f 91       	pop	r20
+ 194:	3f 91       	pop	r19
+ 196:	2f 91       	pop	r18
+ 198:	0f 90       	pop	r0
+ 19a:	0f be       	out	0x3f, r0	; 63
+ 19c:	0f 90       	pop	r0
+ 19e:	1f 90       	pop	r1
+ 1a0:	18 95       	reti
 
-000002ae <_ZN9Scheduler7addTaskEPFvvE12TaskPriority>:
- 2ae:	cf 93       	push	r28
- 2b0:	df 93       	push	r29
- 2b2:	dc 01       	movw	r26, r24
- 2b4:	a8 53       	subi	r26, 0x38	; 56
- 2b6:	bf 4f       	sbci	r27, 0xFF	; 255
- 2b8:	2c 91       	ld	r18, X
- 2ba:	2a 30       	cpi	r18, 0x0A	; 10
- 2bc:	28 f5       	brcc	.+74     	; 0x308 <_ZN9Scheduler7addTaskEPFvvE12TaskPriority+0x5a>
- 2be:	fc 01       	movw	r30, r24
- 2c0:	32 e1       	ldi	r19, 0x12	; 18
- 2c2:	23 9f       	mul	r18, r19
- 2c4:	e0 0d       	add	r30, r0
- 2c6:	f1 1d       	adc	r31, r1
- 2c8:	11 24       	eor	r1, r1
- 2ca:	82 0f       	add	r24, r18
- 2cc:	91 1d       	adc	r25, r1
- 2ce:	82 0f       	add	r24, r18
- 2d0:	91 1d       	adc	r25, r1
- 2d2:	ec 01       	movw	r28, r24
- 2d4:	cc 54       	subi	r28, 0x4C	; 76
- 2d6:	df 4f       	sbci	r29, 0xFF	; 255
- 2d8:	f9 83       	std	Y+1, r31	; 0x01
- 2da:	e8 83       	st	Y, r30
- 2dc:	71 83       	std	Z+1, r23	; 0x01
- 2de:	60 83       	st	Z, r22
- 2e0:	13 82       	std	Z+3, r1	; 0x03
- 2e2:	12 82       	std	Z+2, r1	; 0x02
- 2e4:	55 83       	std	Z+5, r21	; 0x05
- 2e6:	44 83       	std	Z+4, r20	; 0x04
- 2e8:	16 82       	std	Z+6, r1	; 0x06
- 2ea:	17 82       	std	Z+7, r1	; 0x07
- 2ec:	10 86       	std	Z+8, r1	; 0x08
- 2ee:	11 86       	std	Z+9, r1	; 0x09
- 2f0:	12 86       	std	Z+10, r1	; 0x0a
- 2f2:	13 86       	std	Z+11, r1	; 0x0b
- 2f4:	14 86       	std	Z+12, r1	; 0x0c
- 2f6:	15 86       	std	Z+13, r1	; 0x0d
- 2f8:	16 86       	std	Z+14, r1	; 0x0e
- 2fa:	17 86       	std	Z+15, r1	; 0x0f
- 2fc:	10 8a       	std	Z+16, r1	; 0x10
- 2fe:	11 8a       	std	Z+17, r1	; 0x11
- 300:	2f 5f       	subi	r18, 0xFF	; 255
- 302:	2c 93       	st	X, r18
- 304:	81 e0       	ldi	r24, 0x01	; 1
- 306:	01 c0       	rjmp	.+2      	; 0x30a <_ZN9Scheduler7addTaskEPFvvE12TaskPriority+0x5c>
- 308:	80 e0       	ldi	r24, 0x00	; 0
- 30a:	df 91       	pop	r29
- 30c:	cf 91       	pop	r28
- 30e:	08 95       	ret
+000001a2 <_ZN12SystemKernelC1Ev>:
+ 1a2:	0f 93       	push	r16
+ 1a4:	1f 93       	push	r17
+ 1a6:	cf 93       	push	r28
+ 1a8:	df 93       	push	r29
+ 1aa:	ec 01       	movw	r28, r24
+ 1ac:	0e 94 09 01 	call	0x212	; 0x212 <_ZN11TaskManagerC1Ev>
+ 1b0:	8e 01       	movw	r16, r28
+ 1b2:	01 53       	subi	r16, 0x31	; 49
+ 1b4:	1f 4f       	sbci	r17, 0xFF	; 255
+ 1b6:	c8 01       	movw	r24, r16
+ 1b8:	0e 94 56 00 	call	0xac	; 0xac <_ZN15ResourceManagerC1Ev>
+ 1bc:	d0 93 b5 00 	sts	0x00B5, r29	; 0x8000b5 <_ZN12SystemKernel26taskManagerInstanceForISR_E+0x1>
+ 1c0:	c0 93 b4 00 	sts	0x00B4, r28	; 0x8000b4 <_ZN12SystemKernel26taskManagerInstanceForISR_E>
+ 1c4:	10 93 b3 00 	sts	0x00B3, r17	; 0x8000b3 <__data_end+0x1>
+ 1c8:	00 93 b2 00 	sts	0x00B2, r16	; 0x8000b2 <__data_end>
+ 1cc:	df 91       	pop	r29
+ 1ce:	cf 91       	pop	r28
+ 1d0:	1f 91       	pop	r17
+ 1d2:	0f 91       	pop	r16
+ 1d4:	08 95       	ret
 
-00000310 <_ZN9Scheduler5sleepEm>:
- 310:	83 53       	subi	r24, 0x33	; 51
- 312:	9f 4f       	sbci	r25, 0xFF	; 255
- 314:	dc 01       	movw	r26, r24
- 316:	ed 91       	ld	r30, X+
- 318:	fc 91       	ld	r31, X
- 31a:	30 97       	sbiw	r30, 0x00	; 0
- 31c:	41 f0       	breq	.+16     	; 0x32e <_ZN9Scheduler5sleepEm+0x1e>
- 31e:	82 e0       	ldi	r24, 0x02	; 2
- 320:	90 e0       	ldi	r25, 0x00	; 0
- 322:	93 83       	std	Z+3, r25	; 0x03
- 324:	82 83       	std	Z+2, r24	; 0x02
- 326:	46 83       	std	Z+6, r20	; 0x06
- 328:	57 83       	std	Z+7, r21	; 0x07
- 32a:	60 87       	std	Z+8, r22	; 0x08
- 32c:	71 87       	std	Z+9, r23	; 0x09
- 32e:	08 95       	ret
+000001d6 <_ZN12SystemKernel10initializeEv>:
+ 1d6:	1f bc       	out	0x2f, r1	; 47
+ 1d8:	2b e0       	ldi	r18, 0x0B	; 11
+ 1da:	2e bd       	out	0x2e, r18	; 46
+ 1dc:	29 ef       	ldi	r18, 0xF9	; 249
+ 1de:	30 e0       	ldi	r19, 0x00	; 0
+ 1e0:	3b bd       	out	0x2b, r19	; 43
+ 1e2:	2a bd       	out	0x2a, r18	; 42
+ 1e4:	20 e1       	ldi	r18, 0x10	; 16
+ 1e6:	29 bf       	out	0x39, r18	; 57
+ 1e8:	81 53       	subi	r24, 0x31	; 49
+ 1ea:	9f 4f       	sbci	r25, 0xFF	; 255
+ 1ec:	0e 94 99 00 	call	0x132	; 0x132 <_ZN15ResourceManager13initializeAllEv>
+ 1f0:	78 94       	sei
+ 1f2:	08 95       	ret
 
-00000330 <_ZN12SystemKernelC1Ev>:
- 330:	0f 93       	push	r16
- 332:	1f 93       	push	r17
- 334:	cf 93       	push	r28
- 336:	df 93       	push	r29
- 338:	cd b7       	in	r28, 0x3d	; 61
- 33a:	de b7       	in	r29, 0x3e	; 62
- 33c:	29 97       	sbiw	r28, 0x09	; 9
- 33e:	0f b6       	in	r0, 0x3f	; 63
- 340:	f8 94       	cli
- 342:	de bf       	out	0x3e, r29	; 62
- 344:	0f be       	out	0x3f, r0	; 63
- 346:	cd bf       	out	0x3d, r28	; 61
- 348:	8c 01       	movw	r16, r24
- 34a:	0e 94 56 00 	call	0xac	; 0xac <_ZN9SchedulerC1Ev>
- 34e:	81 e0       	ldi	r24, 0x01	; 1
- 350:	89 83       	std	Y+1, r24	; 0x01
- 352:	93 e0       	ldi	r25, 0x03	; 3
- 354:	9a 83       	std	Y+2, r25	; 0x02
- 356:	1b 82       	std	Y+3, r1	; 0x03
- 358:	1c 82       	std	Y+4, r1	; 0x04
- 35a:	8d 83       	std	Y+5, r24	; 0x05
- 35c:	80 e8       	ldi	r24, 0x80	; 128
- 35e:	95 e2       	ldi	r25, 0x25	; 37
- 360:	a0 e0       	ldi	r26, 0x00	; 0
- 362:	b0 e0       	ldi	r27, 0x00	; 0
- 364:	8e 83       	std	Y+6, r24	; 0x06
- 366:	9f 83       	std	Y+7, r25	; 0x07
- 368:	a8 87       	std	Y+8, r26	; 0x08
- 36a:	b9 87       	std	Y+9, r27	; 0x09
- 36c:	be 01       	movw	r22, r28
- 36e:	6f 5f       	subi	r22, 0xFF	; 255
- 370:	7f 4f       	sbci	r23, 0xFF	; 255
- 372:	c8 01       	movw	r24, r16
- 374:	81 53       	subi	r24, 0x31	; 49
- 376:	9f 4f       	sbci	r25, 0xFF	; 255
- 378:	0e 94 a0 03 	call	0x740	; 0x740 <_ZN13UART_ResourceC1ERKNS_6ConfigE>
- 37c:	f8 01       	movw	r30, r16
- 37e:	e7 52       	subi	r30, 0x27	; 39
- 380:	ff 4f       	sbci	r31, 0xFF	; 255
- 382:	10 82       	st	Z, r1
- 384:	10 93 b1 00 	sts	0x00B1, r17	; 0x8000b1 <__data_end+0x1>
- 388:	00 93 b0 00 	sts	0x00B0, r16	; 0x8000b0 <__data_end>
- 38c:	29 96       	adiw	r28, 0x09	; 9
- 38e:	0f b6       	in	r0, 0x3f	; 63
- 390:	f8 94       	cli
- 392:	de bf       	out	0x3e, r29	; 62
- 394:	0f be       	out	0x3f, r0	; 63
- 396:	cd bf       	out	0x3d, r28	; 61
- 398:	df 91       	pop	r29
- 39a:	cf 91       	pop	r28
- 39c:	1f 91       	pop	r17
- 39e:	0f 91       	pop	r16
- 3a0:	08 95       	ret
+000001f4 <_ZN12SystemKernel7addTaskEPFvvE12TaskPriority>:
+ 1f4:	0c 94 d7 01 	jmp	0x3ae	; 0x3ae <_ZN11TaskManager7addTaskEPFvvE12TaskPriority>
 
-000003a2 <_ZN12SystemKernel10initializeEv>:
- 3a2:	cf 93       	push	r28
- 3a4:	df 93       	push	r29
- 3a6:	ec 01       	movw	r28, r24
- 3a8:	0e 94 88 00 	call	0x110	; 0x110 <_ZN9Scheduler4initEv>
- 3ac:	c1 53       	subi	r28, 0x31	; 49
- 3ae:	df 4f       	sbci	r29, 0xFF	; 255
- 3b0:	40 e0       	ldi	r20, 0x00	; 0
- 3b2:	51 ee       	ldi	r21, 0xE1	; 225
- 3b4:	60 e0       	ldi	r22, 0x00	; 0
- 3b6:	70 e0       	ldi	r23, 0x00	; 0
- 3b8:	ce 01       	movw	r24, r28
- 3ba:	0e 94 cd 03 	call	0x79a	; 0x79a <_ZN13UART_Resource5startEm>
- 3be:	60 e6       	ldi	r22, 0x60	; 96
- 3c0:	70 e0       	ldi	r23, 0x00	; 0
- 3c2:	ce 01       	movw	r24, r28
- 3c4:	df 91       	pop	r29
- 3c6:	cf 91       	pop	r28
- 3c8:	0c 94 f4 03 	jmp	0x7e8	; 0x7e8 <_ZN13UART_Resource7printlnEPKc>
+000001f8 <_ZN12SystemKernel7getUARTEv>:
+ 1f8:	81 53       	subi	r24, 0x31	; 49
+ 1fa:	9f 4f       	sbci	r25, 0xFF	; 255
+ 1fc:	0c 94 85 00 	jmp	0x10a	; 0x10a <_ZN15ResourceManager7getUARTEv>
 
-000003cc <_ZN12SystemKernel7getUARTEv>:
- 3cc:	0f 93       	push	r16
- 3ce:	1f 93       	push	r17
- 3d0:	cf 93       	push	r28
- 3d2:	df 93       	push	r29
- 3d4:	8c 01       	movw	r16, r24
- 3d6:	07 52       	subi	r16, 0x27	; 39
- 3d8:	1f 4f       	sbci	r17, 0xFF	; 255
- 3da:	f8 01       	movw	r30, r16
- 3dc:	20 81       	ld	r18, Z
- 3de:	ec 01       	movw	r28, r24
- 3e0:	c1 53       	subi	r28, 0x31	; 49
- 3e2:	df 4f       	sbci	r29, 0xFF	; 255
- 3e4:	22 23       	and	r18, r18
- 3e6:	29 f0       	breq	.+10     	; 0x3f2 <_ZN12SystemKernel7getUARTEv+0x26>
- 3e8:	6a e7       	ldi	r22, 0x7A	; 122
- 3ea:	70 e0       	ldi	r23, 0x00	; 0
- 3ec:	ce 01       	movw	r24, r28
- 3ee:	0e 94 f4 03 	call	0x7e8	; 0x7e8 <_ZN13UART_Resource7printlnEPKc>
- 3f2:	81 e0       	ldi	r24, 0x01	; 1
- 3f4:	f8 01       	movw	r30, r16
- 3f6:	80 83       	st	Z, r24
- 3f8:	ce 01       	movw	r24, r28
- 3fa:	df 91       	pop	r29
- 3fc:	cf 91       	pop	r28
- 3fe:	1f 91       	pop	r17
- 400:	0f 91       	pop	r16
- 402:	08 95       	ret
+00000200 <_ZN12SystemKernel11releaseUARTEv>:
+ 200:	81 53       	subi	r24, 0x31	; 49
+ 202:	9f 4f       	sbci	r25, 0xFF	; 255
+ 204:	0c 94 96 00 	jmp	0x12c	; 0x12c <_ZN15ResourceManager11releaseUARTEv>
 
-00000404 <_ZN12SystemKernel11releaseUARTEv>:
- 404:	87 52       	subi	r24, 0x27	; 39
- 406:	9f 4f       	sbci	r25, 0xFF	; 255
- 408:	fc 01       	movw	r30, r24
- 40a:	10 82       	st	Z, r1
- 40c:	08 95       	ret
+00000208 <_ZN12SystemKernel3runEv>:
+ 208:	ec 01       	movw	r28, r24
+ 20a:	ce 01       	movw	r24, r28
+ 20c:	0e 94 84 01 	call	0x308	; 0x308 <_ZN11TaskManager8dispatchEv>
+ 210:	fc cf       	rjmp	.-8      	; 0x20a <_ZN12SystemKernel3runEv+0x2>
 
-0000040e <_ZL20GPIO_GetPORTRegister9GPIO_Port>:
- 40e:	81 50       	subi	r24, 0x01	; 1
- 410:	83 30       	cpi	r24, 0x03	; 3
- 412:	48 f4       	brcc	.+18     	; 0x426 <_ZL20GPIO_GetPORTRegister9GPIO_Port+0x18>
- 414:	e8 2f       	mov	r30, r24
- 416:	f0 e0       	ldi	r31, 0x00	; 0
- 418:	ee 0f       	add	r30, r30
- 41a:	ff 1f       	adc	r31, r31
- 41c:	e9 56       	subi	r30, 0x69	; 105
- 41e:	ff 4f       	sbci	r31, 0xFF	; 255
- 420:	80 81       	ld	r24, Z
- 422:	91 81       	ldd	r25, Z+1	; 0x01
- 424:	08 95       	ret
- 426:	8b e3       	ldi	r24, 0x3B	; 59
- 428:	90 e0       	ldi	r25, 0x00	; 0
- 42a:	08 95       	ret
+00000212 <_ZN11TaskManagerC1Ev>:
+ 212:	cf 93       	push	r28
+ 214:	df 93       	push	r29
+ 216:	fc 01       	movw	r30, r24
+ 218:	9c 01       	movw	r18, r24
+ 21a:	2c 54       	subi	r18, 0x4C	; 76
+ 21c:	3f 4f       	sbci	r19, 0xFF	; 255
+ 21e:	11 82       	std	Z+1, r1	; 0x01
+ 220:	10 82       	st	Z, r1
+ 222:	13 82       	std	Z+3, r1	; 0x03
+ 224:	12 82       	std	Z+2, r1	; 0x02
+ 226:	15 82       	std	Z+5, r1	; 0x05
+ 228:	14 82       	std	Z+4, r1	; 0x04
+ 22a:	16 82       	std	Z+6, r1	; 0x06
+ 22c:	17 82       	std	Z+7, r1	; 0x07
+ 22e:	10 86       	std	Z+8, r1	; 0x08
+ 230:	11 86       	std	Z+9, r1	; 0x09
+ 232:	12 86       	std	Z+10, r1	; 0x0a
+ 234:	13 86       	std	Z+11, r1	; 0x0b
+ 236:	14 86       	std	Z+12, r1	; 0x0c
+ 238:	15 86       	std	Z+13, r1	; 0x0d
+ 23a:	16 86       	std	Z+14, r1	; 0x0e
+ 23c:	17 86       	std	Z+15, r1	; 0x0f
+ 23e:	10 8a       	std	Z+16, r1	; 0x10
+ 240:	11 8a       	std	Z+17, r1	; 0x11
+ 242:	72 96       	adiw	r30, 0x12	; 18
+ 244:	e2 17       	cp	r30, r18
+ 246:	f3 07       	cpc	r31, r19
+ 248:	51 f7       	brne	.-44     	; 0x21e <_ZN11TaskManagerC1Ev+0xc>
+ 24a:	dc 01       	movw	r26, r24
+ 24c:	a8 53       	subi	r26, 0x38	; 56
+ 24e:	bf 4f       	sbci	r27, 0xFF	; 255
+ 250:	1c 92       	st	X, r1
+ 252:	ec 01       	movw	r28, r24
+ 254:	c7 53       	subi	r28, 0x37	; 55
+ 256:	df 4f       	sbci	r29, 0xFF	; 255
+ 258:	18 82       	st	Y, r1
+ 25a:	19 82       	std	Y+1, r1	; 0x01
+ 25c:	1a 82       	std	Y+2, r1	; 0x02
+ 25e:	1b 82       	std	Y+3, r1	; 0x03
+ 260:	24 96       	adiw	r28, 0x04	; 4
+ 262:	19 82       	std	Y+1, r1	; 0x01
+ 264:	18 82       	st	Y, r1
+ 266:	11 92       	st	Z+, r1
+ 268:	11 92       	st	Z+, r1
+ 26a:	ea 17       	cp	r30, r26
+ 26c:	fb 07       	cpc	r31, r27
+ 26e:	d9 f7       	brne	.-10     	; 0x266 <_ZN11TaskManagerC1Ev+0x54>
+ 270:	df 91       	pop	r29
+ 272:	cf 91       	pop	r28
+ 274:	08 95       	ret
 
-0000042c <_Z13GPIO_WritePin9GPIO_Port8GPIO_Pin10GPIO_State>:
- 42c:	cf 93       	push	r28
- 42e:	df 93       	push	r29
- 430:	d6 2f       	mov	r29, r22
- 432:	c4 2f       	mov	r28, r20
- 434:	0e 94 07 02 	call	0x40e	; 0x40e <_ZL20GPIO_GetPORTRegister9GPIO_Port>
- 438:	fc 01       	movw	r30, r24
- 43a:	21 e0       	ldi	r18, 0x01	; 1
- 43c:	30 e0       	ldi	r19, 0x00	; 0
- 43e:	01 c0       	rjmp	.+2      	; 0x442 <_Z13GPIO_WritePin9GPIO_Port8GPIO_Pin10GPIO_State+0x16>
- 440:	22 0f       	add	r18, r18
- 442:	da 95       	dec	r29
- 444:	ea f7       	brpl	.-6      	; 0x440 <_Z13GPIO_WritePin9GPIO_Port8GPIO_Pin10GPIO_State+0x14>
- 446:	80 81       	ld	r24, Z
- 448:	c1 30       	cpi	r28, 0x01	; 1
- 44a:	11 f4       	brne	.+4      	; 0x450 <_Z13GPIO_WritePin9GPIO_Port8GPIO_Pin10GPIO_State+0x24>
- 44c:	28 2b       	or	r18, r24
- 44e:	02 c0       	rjmp	.+4      	; 0x454 <_Z13GPIO_WritePin9GPIO_Port8GPIO_Pin10GPIO_State+0x28>
- 450:	20 95       	com	r18
- 452:	28 23       	and	r18, r24
- 454:	20 83       	st	Z, r18
- 456:	df 91       	pop	r29
- 458:	cf 91       	pop	r28
- 45a:	08 95       	ret
+00000276 <_ZN11TaskManager4tickEv>:
+ 276:	cf 93       	push	r28
+ 278:	df 93       	push	r29
+ 27a:	dc 01       	movw	r26, r24
+ 27c:	fc 01       	movw	r30, r24
+ 27e:	e7 53       	subi	r30, 0x37	; 55
+ 280:	ff 4f       	sbci	r31, 0xFF	; 255
+ 282:	40 81       	ld	r20, Z
+ 284:	51 81       	ldd	r21, Z+1	; 0x01
+ 286:	62 81       	ldd	r22, Z+2	; 0x02
+ 288:	73 81       	ldd	r23, Z+3	; 0x03
+ 28a:	4f 5f       	subi	r20, 0xFF	; 255
+ 28c:	5f 4f       	sbci	r21, 0xFF	; 255
+ 28e:	6f 4f       	sbci	r22, 0xFF	; 255
+ 290:	7f 4f       	sbci	r23, 0xFF	; 255
+ 292:	40 83       	st	Z, r20
+ 294:	51 83       	std	Z+1, r21	; 0x01
+ 296:	62 83       	std	Z+2, r22	; 0x02
+ 298:	73 83       	std	Z+3, r23	; 0x03
+ 29a:	90 e0       	ldi	r25, 0x00	; 0
+ 29c:	ed 01       	movw	r28, r26
+ 29e:	c8 53       	subi	r28, 0x38	; 56
+ 2a0:	df 4f       	sbci	r29, 0xFF	; 255
+ 2a2:	88 81       	ld	r24, Y
+ 2a4:	98 17       	cp	r25, r24
+ 2a6:	68 f5       	brcc	.+90     	; 0x302 <_ZN11TaskManager4tickEv+0x8c>
+ 2a8:	9d 01       	movw	r18, r26
+ 2aa:	29 0f       	add	r18, r25
+ 2ac:	31 1d       	adc	r19, r1
+ 2ae:	29 0f       	add	r18, r25
+ 2b0:	31 1d       	adc	r19, r1
+ 2b2:	f9 01       	movw	r30, r18
+ 2b4:	ec 54       	subi	r30, 0x4C	; 76
+ 2b6:	ff 4f       	sbci	r31, 0xFF	; 255
+ 2b8:	01 90       	ld	r0, Z+
+ 2ba:	f0 81       	ld	r31, Z
+ 2bc:	e0 2d       	mov	r30, r0
+ 2be:	22 81       	ldd	r18, Z+2	; 0x02
+ 2c0:	33 81       	ldd	r19, Z+3	; 0x03
+ 2c2:	22 30       	cpi	r18, 0x02	; 2
+ 2c4:	31 05       	cpc	r19, r1
+ 2c6:	d9 f4       	brne	.+54     	; 0x2fe <_ZN11TaskManager4tickEv+0x88>
+ 2c8:	46 81       	ldd	r20, Z+6	; 0x06
+ 2ca:	57 81       	ldd	r21, Z+7	; 0x07
+ 2cc:	60 85       	ldd	r22, Z+8	; 0x08
+ 2ce:	71 85       	ldd	r23, Z+9	; 0x09
+ 2d0:	41 15       	cp	r20, r1
+ 2d2:	51 05       	cpc	r21, r1
+ 2d4:	61 05       	cpc	r22, r1
+ 2d6:	71 05       	cpc	r23, r1
+ 2d8:	41 f0       	breq	.+16     	; 0x2ea <_ZN11TaskManager4tickEv+0x74>
+ 2da:	41 50       	subi	r20, 0x01	; 1
+ 2dc:	51 09       	sbc	r21, r1
+ 2de:	61 09       	sbc	r22, r1
+ 2e0:	71 09       	sbc	r23, r1
+ 2e2:	46 83       	std	Z+6, r20	; 0x06
+ 2e4:	57 83       	std	Z+7, r21	; 0x07
+ 2e6:	60 87       	std	Z+8, r22	; 0x08
+ 2e8:	71 87       	std	Z+9, r23	; 0x09
+ 2ea:	46 81       	ldd	r20, Z+6	; 0x06
+ 2ec:	57 81       	ldd	r21, Z+7	; 0x07
+ 2ee:	60 85       	ldd	r22, Z+8	; 0x08
+ 2f0:	71 85       	ldd	r23, Z+9	; 0x09
+ 2f2:	45 2b       	or	r20, r21
+ 2f4:	46 2b       	or	r20, r22
+ 2f6:	47 2b       	or	r20, r23
+ 2f8:	11 f4       	brne	.+4      	; 0x2fe <_ZN11TaskManager4tickEv+0x88>
+ 2fa:	13 82       	std	Z+3, r1	; 0x03
+ 2fc:	12 82       	std	Z+2, r1	; 0x02
+ 2fe:	9f 5f       	subi	r25, 0xFF	; 255
+ 300:	d0 cf       	rjmp	.-96     	; 0x2a2 <_ZN11TaskManager4tickEv+0x2c>
+ 302:	df 91       	pop	r29
+ 304:	cf 91       	pop	r28
+ 306:	08 95       	ret
 
-0000045c <_Z12UART_Disablev>:
- 45c:	8a b1       	in	r24, 0x0a	; 10
- 45e:	87 7e       	andi	r24, 0xE7	; 231
- 460:	8a b9       	out	0x0a, r24	; 10
- 462:	08 95       	ret
+00000308 <_ZN11TaskManager8dispatchEv>:
+ 308:	cf 93       	push	r28
+ 30a:	df 93       	push	r29
+ 30c:	fc 01       	movw	r30, r24
+ 30e:	e8 53       	subi	r30, 0x38	; 56
+ 310:	ff 4f       	sbci	r31, 0xFF	; 255
+ 312:	c0 81       	ld	r28, Z
+ 314:	74 97       	sbiw	r30, 0x14	; 20
+ 316:	20 e0       	ldi	r18, 0x00	; 0
+ 318:	40 e0       	ldi	r20, 0x00	; 0
+ 31a:	50 e0       	ldi	r21, 0x00	; 0
+ 31c:	3f ef       	ldi	r19, 0xFF	; 255
+ 31e:	2c 17       	cp	r18, r28
+ 320:	99 f0       	breq	.+38     	; 0x348 <_ZN11TaskManager8dispatchEv+0x40>
+ 322:	a1 91       	ld	r26, Z+
+ 324:	b1 91       	ld	r27, Z+
+ 326:	12 96       	adiw	r26, 0x02	; 2
+ 328:	6d 91       	ld	r22, X+
+ 32a:	7c 91       	ld	r23, X
+ 32c:	13 97       	sbiw	r26, 0x03	; 3
+ 32e:	67 2b       	or	r22, r23
+ 330:	49 f4       	brne	.+18     	; 0x344 <_ZN11TaskManager8dispatchEv+0x3c>
+ 332:	14 96       	adiw	r26, 0x04	; 4
+ 334:	6d 91       	ld	r22, X+
+ 336:	7c 91       	ld	r23, X
+ 338:	15 97       	sbiw	r26, 0x05	; 5
+ 33a:	46 17       	cp	r20, r22
+ 33c:	57 07       	cpc	r21, r23
+ 33e:	14 f4       	brge	.+4      	; 0x344 <_ZN11TaskManager8dispatchEv+0x3c>
+ 340:	32 2f       	mov	r19, r18
+ 342:	ab 01       	movw	r20, r22
+ 344:	2f 5f       	subi	r18, 0xFF	; 255
+ 346:	eb cf       	rjmp	.-42     	; 0x31e <_ZN11TaskManager8dispatchEv+0x16>
+ 348:	37 fd       	sbrc	r19, 7
+ 34a:	2e c0       	rjmp	.+92     	; 0x3a8 <_ZN11TaskManager8dispatchEv+0xa0>
+ 34c:	fc 01       	movw	r30, r24
+ 34e:	22 e0       	ldi	r18, 0x02	; 2
+ 350:	32 02       	muls	r19, r18
+ 352:	e0 0d       	add	r30, r0
+ 354:	f1 1d       	adc	r31, r1
+ 356:	11 24       	eor	r1, r1
+ 358:	ec 54       	subi	r30, 0x4C	; 76
+ 35a:	ff 4f       	sbci	r31, 0xFF	; 255
+ 35c:	01 90       	ld	r0, Z+
+ 35e:	f0 81       	ld	r31, Z
+ 360:	e0 2d       	mov	r30, r0
+ 362:	ec 01       	movw	r28, r24
+ 364:	c3 53       	subi	r28, 0x33	; 51
+ 366:	df 4f       	sbci	r29, 0xFF	; 255
+ 368:	f9 83       	std	Y+1, r31	; 0x01
+ 36a:	e8 83       	st	Y, r30
+ 36c:	21 e0       	ldi	r18, 0x01	; 1
+ 36e:	30 e0       	ldi	r19, 0x00	; 0
+ 370:	33 83       	std	Z+3, r19	; 0x03
+ 372:	22 83       	std	Z+2, r18	; 0x02
+ 374:	dc 01       	movw	r26, r24
+ 376:	a7 53       	subi	r26, 0x37	; 55
+ 378:	bf 4f       	sbci	r27, 0xFF	; 255
+ 37a:	8d 91       	ld	r24, X+
+ 37c:	9d 91       	ld	r25, X+
+ 37e:	0d 90       	ld	r0, X+
+ 380:	bc 91       	ld	r27, X
+ 382:	a0 2d       	mov	r26, r0
+ 384:	86 87       	std	Z+14, r24	; 0x0e
+ 386:	97 87       	std	Z+15, r25	; 0x0f
+ 388:	a0 8b       	std	Z+16, r26	; 0x10
+ 38a:	b1 8b       	std	Z+17, r27	; 0x11
+ 38c:	01 90       	ld	r0, Z+
+ 38e:	f0 81       	ld	r31, Z
+ 390:	e0 2d       	mov	r30, r0
+ 392:	09 95       	icall
+ 394:	e8 81       	ld	r30, Y
+ 396:	f9 81       	ldd	r31, Y+1	; 0x01
+ 398:	82 81       	ldd	r24, Z+2	; 0x02
+ 39a:	93 81       	ldd	r25, Z+3	; 0x03
+ 39c:	01 97       	sbiw	r24, 0x01	; 1
+ 39e:	11 f4       	brne	.+4      	; 0x3a4 <_ZN11TaskManager8dispatchEv+0x9c>
+ 3a0:	13 82       	std	Z+3, r1	; 0x03
+ 3a2:	12 82       	std	Z+2, r1	; 0x02
+ 3a4:	19 82       	std	Y+1, r1	; 0x01
+ 3a6:	18 82       	st	Y, r1
+ 3a8:	df 91       	pop	r29
+ 3aa:	cf 91       	pop	r28
+ 3ac:	08 95       	ret
 
-00000464 <_Z16UART_SetBaudRatem>:
- 464:	9b 01       	movw	r18, r22
- 466:	ac 01       	movw	r20, r24
- 468:	84 e0       	ldi	r24, 0x04	; 4
- 46a:	22 0f       	add	r18, r18
- 46c:	33 1f       	adc	r19, r19
- 46e:	44 1f       	adc	r20, r20
- 470:	55 1f       	adc	r21, r21
- 472:	8a 95       	dec	r24
- 474:	d1 f7       	brne	.-12     	; 0x46a <_Z16UART_SetBaudRatem+0x6>
- 476:	60 e0       	ldi	r22, 0x00	; 0
- 478:	74 e2       	ldi	r23, 0x24	; 36
- 47a:	84 ef       	ldi	r24, 0xF4	; 244
- 47c:	90 e0       	ldi	r25, 0x00	; 0
- 47e:	0e 94 08 04 	call	0x810	; 0x810 <__udivmodsi4>
- 482:	21 50       	subi	r18, 0x01	; 1
- 484:	31 09       	sbc	r19, r1
- 486:	30 bd       	out	0x20, r19	; 32
- 488:	29 b9       	out	0x09, r18	; 9
- 48a:	08 95       	ret
+000003ae <_ZN11TaskManager7addTaskEPFvvE12TaskPriority>:
+ 3ae:	cf 93       	push	r28
+ 3b0:	df 93       	push	r29
+ 3b2:	dc 01       	movw	r26, r24
+ 3b4:	a8 53       	subi	r26, 0x38	; 56
+ 3b6:	bf 4f       	sbci	r27, 0xFF	; 255
+ 3b8:	2c 91       	ld	r18, X
+ 3ba:	2a 30       	cpi	r18, 0x0A	; 10
+ 3bc:	28 f5       	brcc	.+74     	; 0x408 <__EEPROM_REGION_LENGTH__+0x8>
+ 3be:	fc 01       	movw	r30, r24
+ 3c0:	32 e1       	ldi	r19, 0x12	; 18
+ 3c2:	23 9f       	mul	r18, r19
+ 3c4:	e0 0d       	add	r30, r0
+ 3c6:	f1 1d       	adc	r31, r1
+ 3c8:	11 24       	eor	r1, r1
+ 3ca:	82 0f       	add	r24, r18
+ 3cc:	91 1d       	adc	r25, r1
+ 3ce:	82 0f       	add	r24, r18
+ 3d0:	91 1d       	adc	r25, r1
+ 3d2:	ec 01       	movw	r28, r24
+ 3d4:	cc 54       	subi	r28, 0x4C	; 76
+ 3d6:	df 4f       	sbci	r29, 0xFF	; 255
+ 3d8:	f9 83       	std	Y+1, r31	; 0x01
+ 3da:	e8 83       	st	Y, r30
+ 3dc:	71 83       	std	Z+1, r23	; 0x01
+ 3de:	60 83       	st	Z, r22
+ 3e0:	13 82       	std	Z+3, r1	; 0x03
+ 3e2:	12 82       	std	Z+2, r1	; 0x02
+ 3e4:	55 83       	std	Z+5, r21	; 0x05
+ 3e6:	44 83       	std	Z+4, r20	; 0x04
+ 3e8:	16 82       	std	Z+6, r1	; 0x06
+ 3ea:	17 82       	std	Z+7, r1	; 0x07
+ 3ec:	10 86       	std	Z+8, r1	; 0x08
+ 3ee:	11 86       	std	Z+9, r1	; 0x09
+ 3f0:	12 86       	std	Z+10, r1	; 0x0a
+ 3f2:	13 86       	std	Z+11, r1	; 0x0b
+ 3f4:	14 86       	std	Z+12, r1	; 0x0c
+ 3f6:	15 86       	std	Z+13, r1	; 0x0d
+ 3f8:	16 86       	std	Z+14, r1	; 0x0e
+ 3fa:	17 86       	std	Z+15, r1	; 0x0f
+ 3fc:	10 8a       	std	Z+16, r1	; 0x10
+ 3fe:	11 8a       	std	Z+17, r1	; 0x11
+ 400:	2f 5f       	subi	r18, 0xFF	; 255
+ 402:	2c 93       	st	X, r18
+ 404:	81 e0       	ldi	r24, 0x01	; 1
+ 406:	01 c0       	rjmp	.+2      	; 0x40a <__EEPROM_REGION_LENGTH__+0xa>
+ 408:	80 e0       	ldi	r24, 0x00	; 0
+ 40a:	df 91       	pop	r29
+ 40c:	cf 91       	pop	r28
+ 40e:	08 95       	ret
 
-0000048c <_Z9UART_Init10UART_Statem13UART_DataBits13UART_StopBits11UART_Parity14UART_Interrupt>:
- 48c:	cf 92       	push	r12
- 48e:	df 92       	push	r13
- 490:	ef 92       	push	r14
- 492:	ff 92       	push	r15
- 494:	0f 93       	push	r16
- 496:	1f 93       	push	r17
- 498:	cf 93       	push	r28
- 49a:	df 93       	push	r29
- 49c:	d8 2e       	mov	r13, r24
- 49e:	d2 2f       	mov	r29, r18
- 4a0:	cc 2d       	mov	r28, r12
- 4a2:	cb 01       	movw	r24, r22
- 4a4:	ba 01       	movw	r22, r20
- 4a6:	0e 94 32 02 	call	0x464	; 0x464 <_Z16UART_SetBaudRatem>
- 4aa:	8d 2f       	mov	r24, r29
- 4ac:	88 0f       	add	r24, r24
- 4ae:	80 68       	ori	r24, 0x80	; 128
- 4b0:	98 e0       	ldi	r25, 0x08	; 8
- 4b2:	09 9f       	mul	r16, r25
- 4b4:	80 01       	movw	r16, r0
- 4b6:	11 24       	eor	r1, r1
- 4b8:	08 2b       	or	r16, r24
- 4ba:	80 e1       	ldi	r24, 0x10	; 16
- 4bc:	e8 9e       	mul	r14, r24
- 4be:	70 01       	movw	r14, r0
- 4c0:	11 24       	eor	r1, r1
- 4c2:	e0 2a       	or	r14, r16
- 4c4:	e0 bc       	out	0x20, r14	; 32
- 4c6:	88 e1       	ldi	r24, 0x18	; 24
- 4c8:	8a b9       	out	0x0a, r24	; 10
- 4ca:	d7 30       	cpi	r29, 0x07	; 7
- 4cc:	09 f4       	brne	.+2      	; 0x4d0 <_Z9UART_Init10UART_Statem13UART_DataBits13UART_StopBits11UART_Parity14UART_Interrupt+0x44>
- 4ce:	52 9a       	sbi	0x0a, 2	; 10
- 4d0:	c2 30       	cpi	r28, 0x02	; 2
- 4d2:	31 f0       	breq	.+12     	; 0x4e0 <_Z9UART_Init10UART_Statem13UART_DataBits13UART_StopBits11UART_Parity14UART_Interrupt+0x54>
- 4d4:	c3 30       	cpi	r28, 0x03	; 3
- 4d6:	31 f0       	breq	.+12     	; 0x4e4 <_Z9UART_Init10UART_Statem13UART_DataBits13UART_StopBits11UART_Parity14UART_Interrupt+0x58>
- 4d8:	c1 30       	cpi	r28, 0x01	; 1
- 4da:	39 f4       	brne	.+14     	; 0x4ea <_Z9UART_Init10UART_Statem13UART_DataBits13UART_StopBits11UART_Parity14UART_Interrupt+0x5e>
- 4dc:	57 9a       	sbi	0x0a, 7	; 10
- 4de:	05 c0       	rjmp	.+10     	; 0x4ea <_Z9UART_Init10UART_Statem13UART_DataBits13UART_StopBits11UART_Parity14UART_Interrupt+0x5e>
- 4e0:	56 9a       	sbi	0x0a, 6	; 10
- 4e2:	03 c0       	rjmp	.+6      	; 0x4ea <_Z9UART_Init10UART_Statem13UART_DataBits13UART_StopBits11UART_Parity14UART_Interrupt+0x5e>
- 4e4:	8a b1       	in	r24, 0x0a	; 10
- 4e6:	80 6c       	ori	r24, 0xC0	; 192
- 4e8:	8a b9       	out	0x0a, r24	; 10
- 4ea:	d1 10       	cpse	r13, r1
- 4ec:	0a c0       	rjmp	.+20     	; 0x502 <_Z9UART_Init10UART_Statem13UART_DataBits13UART_StopBits11UART_Parity14UART_Interrupt+0x76>
- 4ee:	df 91       	pop	r29
- 4f0:	cf 91       	pop	r28
- 4f2:	1f 91       	pop	r17
- 4f4:	0f 91       	pop	r16
- 4f6:	ff 90       	pop	r15
- 4f8:	ef 90       	pop	r14
- 4fa:	df 90       	pop	r13
- 4fc:	cf 90       	pop	r12
- 4fe:	0c 94 2e 02 	jmp	0x45c	; 0x45c <_Z12UART_Disablev>
- 502:	df 91       	pop	r29
- 504:	cf 91       	pop	r28
- 506:	1f 91       	pop	r17
- 508:	0f 91       	pop	r16
- 50a:	ff 90       	pop	r15
- 50c:	ef 90       	pop	r14
- 50e:	df 90       	pop	r13
- 510:	cf 90       	pop	r12
- 512:	08 95       	ret
+00000410 <_ZN11TaskManager5sleepEm>:
+ 410:	83 53       	subi	r24, 0x33	; 51
+ 412:	9f 4f       	sbci	r25, 0xFF	; 255
+ 414:	dc 01       	movw	r26, r24
+ 416:	ed 91       	ld	r30, X+
+ 418:	fc 91       	ld	r31, X
+ 41a:	30 97       	sbiw	r30, 0x00	; 0
+ 41c:	41 f0       	breq	.+16     	; 0x42e <_ZN11TaskManager5sleepEm+0x1e>
+ 41e:	82 e0       	ldi	r24, 0x02	; 2
+ 420:	90 e0       	ldi	r25, 0x00	; 0
+ 422:	93 83       	std	Z+3, r25	; 0x03
+ 424:	82 83       	std	Z+2, r24	; 0x02
+ 426:	46 83       	std	Z+6, r20	; 0x06
+ 428:	57 83       	std	Z+7, r21	; 0x07
+ 42a:	60 87       	std	Z+8, r22	; 0x08
+ 42c:	71 87       	std	Z+9, r23	; 0x09
+ 42e:	08 95       	ret
 
-00000514 <_Z13UART_SendByteh>:
- 514:	5d 9b       	sbis	0x0b, 5	; 11
- 516:	fe cf       	rjmp	.-4      	; 0x514 <_Z13UART_SendByteh>
- 518:	8c b9       	out	0x0c, r24	; 12
- 51a:	08 95       	ret
+00000430 <_ZL20GPIO_GetPORTRegister9GPIO_Port>:
+ 430:	81 50       	subi	r24, 0x01	; 1
+ 432:	83 30       	cpi	r24, 0x03	; 3
+ 434:	48 f4       	brcc	.+18     	; 0x448 <_ZL20GPIO_GetPORTRegister9GPIO_Port+0x18>
+ 436:	e8 2f       	mov	r30, r24
+ 438:	f0 e0       	ldi	r31, 0x00	; 0
+ 43a:	ee 0f       	add	r30, r30
+ 43c:	ff 1f       	adc	r31, r31
+ 43e:	e7 56       	subi	r30, 0x67	; 103
+ 440:	ff 4f       	sbci	r31, 0xFF	; 255
+ 442:	80 81       	ld	r24, Z
+ 444:	91 81       	ldd	r25, Z+1	; 0x01
+ 446:	08 95       	ret
+ 448:	8b e3       	ldi	r24, 0x3B	; 59
+ 44a:	90 e0       	ldi	r25, 0x00	; 0
+ 44c:	08 95       	ret
 
-0000051c <__vector_13>:
- 51c:	1f 92       	push	r1
- 51e:	0f 92       	push	r0
- 520:	0f b6       	in	r0, 0x3f	; 63
- 522:	0f 92       	push	r0
- 524:	11 24       	eor	r1, r1
- 526:	2f 93       	push	r18
- 528:	3f 93       	push	r19
- 52a:	4f 93       	push	r20
- 52c:	5f 93       	push	r21
- 52e:	6f 93       	push	r22
- 530:	7f 93       	push	r23
- 532:	8f 93       	push	r24
- 534:	9f 93       	push	r25
- 536:	af 93       	push	r26
- 538:	bf 93       	push	r27
- 53a:	ef 93       	push	r30
- 53c:	ff 93       	push	r31
- 53e:	8c b1       	in	r24, 0x0c	; 12
- 540:	e0 91 b2 00 	lds	r30, 0x00B2	; 0x8000b2 <_ZL16uart_rx_callback>
- 544:	f0 91 b3 00 	lds	r31, 0x00B3	; 0x8000b3 <_ZL16uart_rx_callback+0x1>
- 548:	30 97       	sbiw	r30, 0x00	; 0
- 54a:	11 f0       	breq	.+4      	; 0x550 <__vector_13+0x34>
- 54c:	09 95       	icall
- 54e:	13 c0       	rjmp	.+38     	; 0x576 <__vector_13+0x5a>
- 550:	20 91 b7 00 	lds	r18, 0x00B7	; 0x8000b7 <_ZL12uart_rx_head>
- 554:	30 e0       	ldi	r19, 0x00	; 0
- 556:	2f 5f       	subi	r18, 0xFF	; 255
- 558:	3f 4f       	sbci	r19, 0xFF	; 255
- 55a:	2f 73       	andi	r18, 0x3F	; 63
- 55c:	33 27       	eor	r19, r19
- 55e:	90 91 b6 00 	lds	r25, 0x00B6	; 0x8000b6 <_ZL12uart_rx_tail>
- 562:	92 17       	cp	r25, r18
- 564:	41 f0       	breq	.+16     	; 0x576 <__vector_13+0x5a>
- 566:	e0 91 b7 00 	lds	r30, 0x00B7	; 0x8000b7 <_ZL12uart_rx_head>
- 56a:	f0 e0       	ldi	r31, 0x00	; 0
- 56c:	e8 50       	subi	r30, 0x08	; 8
- 56e:	ff 4f       	sbci	r31, 0xFF	; 255
- 570:	80 83       	st	Z, r24
- 572:	20 93 b7 00 	sts	0x00B7, r18	; 0x8000b7 <_ZL12uart_rx_head>
- 576:	ff 91       	pop	r31
- 578:	ef 91       	pop	r30
- 57a:	bf 91       	pop	r27
- 57c:	af 91       	pop	r26
- 57e:	9f 91       	pop	r25
- 580:	8f 91       	pop	r24
- 582:	7f 91       	pop	r23
- 584:	6f 91       	pop	r22
- 586:	5f 91       	pop	r21
- 588:	4f 91       	pop	r20
- 58a:	3f 91       	pop	r19
- 58c:	2f 91       	pop	r18
- 58e:	0f 90       	pop	r0
- 590:	0f be       	out	0x3f, r0	; 63
- 592:	0f 90       	pop	r0
- 594:	1f 90       	pop	r1
- 596:	18 95       	reti
+0000044e <_Z13GPIO_WritePin9GPIO_Port8GPIO_Pin10GPIO_State>:
+ 44e:	cf 93       	push	r28
+ 450:	df 93       	push	r29
+ 452:	d6 2f       	mov	r29, r22
+ 454:	c4 2f       	mov	r28, r20
+ 456:	0e 94 18 02 	call	0x430	; 0x430 <_ZL20GPIO_GetPORTRegister9GPIO_Port>
+ 45a:	fc 01       	movw	r30, r24
+ 45c:	21 e0       	ldi	r18, 0x01	; 1
+ 45e:	30 e0       	ldi	r19, 0x00	; 0
+ 460:	01 c0       	rjmp	.+2      	; 0x464 <_Z13GPIO_WritePin9GPIO_Port8GPIO_Pin10GPIO_State+0x16>
+ 462:	22 0f       	add	r18, r18
+ 464:	da 95       	dec	r29
+ 466:	ea f7       	brpl	.-6      	; 0x462 <_Z13GPIO_WritePin9GPIO_Port8GPIO_Pin10GPIO_State+0x14>
+ 468:	80 81       	ld	r24, Z
+ 46a:	c1 30       	cpi	r28, 0x01	; 1
+ 46c:	11 f4       	brne	.+4      	; 0x472 <_Z13GPIO_WritePin9GPIO_Port8GPIO_Pin10GPIO_State+0x24>
+ 46e:	28 2b       	or	r18, r24
+ 470:	02 c0       	rjmp	.+4      	; 0x476 <_Z13GPIO_WritePin9GPIO_Port8GPIO_Pin10GPIO_State+0x28>
+ 472:	20 95       	com	r18
+ 474:	28 23       	and	r18, r24
+ 476:	20 83       	st	Z, r18
+ 478:	df 91       	pop	r29
+ 47a:	cf 91       	pop	r28
+ 47c:	08 95       	ret
 
-00000598 <__vector_15>:
- 598:	1f 92       	push	r1
- 59a:	0f 92       	push	r0
- 59c:	0f b6       	in	r0, 0x3f	; 63
- 59e:	0f 92       	push	r0
- 5a0:	11 24       	eor	r1, r1
- 5a2:	8f 93       	push	r24
- 5a4:	9f 93       	push	r25
- 5a6:	ef 93       	push	r30
- 5a8:	ff 93       	push	r31
- 5aa:	90 91 b5 00 	lds	r25, 0x00B5	; 0x8000b5 <_ZL12uart_tx_head>
- 5ae:	80 91 b4 00 	lds	r24, 0x00B4	; 0x8000b4 <_ZL12uart_tx_tail>
- 5b2:	98 17       	cp	r25, r24
- 5b4:	79 f0       	breq	.+30     	; 0x5d4 <__vector_15+0x3c>
- 5b6:	e0 91 b4 00 	lds	r30, 0x00B4	; 0x8000b4 <_ZL12uart_tx_tail>
- 5ba:	f0 e0       	ldi	r31, 0x00	; 0
- 5bc:	e8 54       	subi	r30, 0x48	; 72
- 5be:	ff 4f       	sbci	r31, 0xFF	; 255
- 5c0:	80 81       	ld	r24, Z
- 5c2:	8c b9       	out	0x0c, r24	; 12
- 5c4:	80 91 b4 00 	lds	r24, 0x00B4	; 0x8000b4 <_ZL12uart_tx_tail>
- 5c8:	90 e0       	ldi	r25, 0x00	; 0
- 5ca:	01 96       	adiw	r24, 0x01	; 1
- 5cc:	8f 73       	andi	r24, 0x3F	; 63
- 5ce:	99 27       	eor	r25, r25
- 5d0:	80 93 b4 00 	sts	0x00B4, r24	; 0x8000b4 <_ZL12uart_tx_tail>
- 5d4:	ff 91       	pop	r31
- 5d6:	ef 91       	pop	r30
- 5d8:	9f 91       	pop	r25
- 5da:	8f 91       	pop	r24
- 5dc:	0f 90       	pop	r0
- 5de:	0f be       	out	0x3f, r0	; 63
- 5e0:	0f 90       	pop	r0
- 5e2:	1f 90       	pop	r1
- 5e4:	18 95       	reti
+0000047e <_Z12UART_Disablev>:
+ 47e:	8a b1       	in	r24, 0x0a	; 10
+ 480:	87 7e       	andi	r24, 0xE7	; 231
+ 482:	8a b9       	out	0x0a, r24	; 10
+ 484:	08 95       	ret
 
-000005e6 <_Z8fastTaskv>:
- 5e6:	cf 93       	push	r28
- 5e8:	df 93       	push	r29
- 5ea:	81 e5       	ldi	r24, 0x51	; 81
- 5ec:	91 e0       	ldi	r25, 0x01	; 1
- 5ee:	0e 94 e6 01 	call	0x3cc	; 0x3cc <_ZN12SystemKernel7getUARTEv>
- 5f2:	ec 01       	movw	r28, r24
- 5f4:	6d e9       	ldi	r22, 0x9D	; 157
- 5f6:	70 e0       	ldi	r23, 0x00	; 0
- 5f8:	0e 94 d4 03 	call	0x7a8	; 0x7a8 <_ZN13UART_Resource5printEPKc>
- 5fc:	80 91 4d 01 	lds	r24, 0x014D	; 0x80014d <fastCounter>
- 600:	90 91 4e 01 	lds	r25, 0x014E	; 0x80014e <fastCounter+0x1>
- 604:	a0 91 4f 01 	lds	r26, 0x014F	; 0x80014f <fastCounter+0x2>
- 608:	b0 91 50 01 	lds	r27, 0x0150	; 0x800150 <fastCounter+0x3>
- 60c:	ac 01       	movw	r20, r24
- 60e:	bd 01       	movw	r22, r26
- 610:	4f 5f       	subi	r20, 0xFF	; 255
- 612:	5f 4f       	sbci	r21, 0xFF	; 255
- 614:	6f 4f       	sbci	r22, 0xFF	; 255
- 616:	7f 4f       	sbci	r23, 0xFF	; 255
- 618:	40 93 4d 01 	sts	0x014D, r20	; 0x80014d <fastCounter>
- 61c:	50 93 4e 01 	sts	0x014E, r21	; 0x80014e <fastCounter+0x1>
- 620:	60 93 4f 01 	sts	0x014F, r22	; 0x80014f <fastCounter+0x2>
- 624:	70 93 50 01 	sts	0x0150, r23	; 0x800150 <fastCounter+0x3>
- 628:	4a e0       	ldi	r20, 0x0A	; 10
- 62a:	68 e3       	ldi	r22, 0x38	; 56
- 62c:	71 e0       	ldi	r23, 0x01	; 1
- 62e:	0e 94 30 04 	call	0x860	; 0x860 <__itoa_ncheck>
- 632:	bc 01       	movw	r22, r24
- 634:	ce 01       	movw	r24, r28
- 636:	0e 94 d4 03 	call	0x7a8	; 0x7a8 <_ZN13UART_Resource5printEPKc>
- 63a:	81 e5       	ldi	r24, 0x51	; 81
- 63c:	91 e0       	ldi	r25, 0x01	; 1
- 63e:	0e 94 02 02 	call	0x404	; 0x404 <_ZN12SystemKernel11releaseUARTEv>
- 642:	42 e3       	ldi	r20, 0x32	; 50
- 644:	50 e0       	ldi	r21, 0x00	; 0
- 646:	60 e0       	ldi	r22, 0x00	; 0
- 648:	70 e0       	ldi	r23, 0x00	; 0
- 64a:	81 e5       	ldi	r24, 0x51	; 81
- 64c:	91 e0       	ldi	r25, 0x01	; 1
- 64e:	df 91       	pop	r29
- 650:	cf 91       	pop	r28
- 652:	0c 94 88 01 	jmp	0x310	; 0x310 <_ZN9Scheduler5sleepEm>
+00000486 <_Z16UART_SetBaudRatem>:
+ 486:	9b 01       	movw	r18, r22
+ 488:	ac 01       	movw	r20, r24
+ 48a:	84 e0       	ldi	r24, 0x04	; 4
+ 48c:	22 0f       	add	r18, r18
+ 48e:	33 1f       	adc	r19, r19
+ 490:	44 1f       	adc	r20, r20
+ 492:	55 1f       	adc	r21, r21
+ 494:	8a 95       	dec	r24
+ 496:	d1 f7       	brne	.-12     	; 0x48c <_Z16UART_SetBaudRatem+0x6>
+ 498:	60 e0       	ldi	r22, 0x00	; 0
+ 49a:	74 e2       	ldi	r23, 0x24	; 36
+ 49c:	84 ef       	ldi	r24, 0xF4	; 244
+ 49e:	90 e0       	ldi	r25, 0x00	; 0
+ 4a0:	0e 94 1b 04 	call	0x836	; 0x836 <__udivmodsi4>
+ 4a4:	21 50       	subi	r18, 0x01	; 1
+ 4a6:	31 09       	sbc	r19, r1
+ 4a8:	30 bd       	out	0x20, r19	; 32
+ 4aa:	29 b9       	out	0x09, r18	; 9
+ 4ac:	08 95       	ret
 
-00000656 <_Z8slowTaskv>:
- 656:	cf 93       	push	r28
- 658:	df 93       	push	r29
- 65a:	81 e5       	ldi	r24, 0x51	; 81
- 65c:	91 e0       	ldi	r25, 0x01	; 1
- 65e:	0e 94 e6 01 	call	0x3cc	; 0x3cc <_ZN12SystemKernel7getUARTEv>
- 662:	ec 01       	movw	r28, r24
- 664:	65 ea       	ldi	r22, 0xA5	; 165
- 666:	70 e0       	ldi	r23, 0x00	; 0
- 668:	0e 94 d4 03 	call	0x7a8	; 0x7a8 <_ZN13UART_Resource5printEPKc>
- 66c:	80 91 49 01 	lds	r24, 0x0149	; 0x800149 <slowCounter>
- 670:	90 91 4a 01 	lds	r25, 0x014A	; 0x80014a <slowCounter+0x1>
- 674:	a0 91 4b 01 	lds	r26, 0x014B	; 0x80014b <slowCounter+0x2>
- 678:	b0 91 4c 01 	lds	r27, 0x014C	; 0x80014c <slowCounter+0x3>
- 67c:	ac 01       	movw	r20, r24
- 67e:	bd 01       	movw	r22, r26
- 680:	4f 5f       	subi	r20, 0xFF	; 255
- 682:	5f 4f       	sbci	r21, 0xFF	; 255
- 684:	6f 4f       	sbci	r22, 0xFF	; 255
- 686:	7f 4f       	sbci	r23, 0xFF	; 255
- 688:	40 93 49 01 	sts	0x0149, r20	; 0x800149 <slowCounter>
- 68c:	50 93 4a 01 	sts	0x014A, r21	; 0x80014a <slowCounter+0x1>
- 690:	60 93 4b 01 	sts	0x014B, r22	; 0x80014b <slowCounter+0x2>
- 694:	70 93 4c 01 	sts	0x014C, r23	; 0x80014c <slowCounter+0x3>
- 698:	4a e0       	ldi	r20, 0x0A	; 10
- 69a:	68 e3       	ldi	r22, 0x38	; 56
- 69c:	71 e0       	ldi	r23, 0x01	; 1
- 69e:	0e 94 30 04 	call	0x860	; 0x860 <__itoa_ncheck>
- 6a2:	bc 01       	movw	r22, r24
- 6a4:	ce 01       	movw	r24, r28
- 6a6:	0e 94 d4 03 	call	0x7a8	; 0x7a8 <_ZN13UART_Resource5printEPKc>
- 6aa:	81 e5       	ldi	r24, 0x51	; 81
- 6ac:	91 e0       	ldi	r25, 0x01	; 1
- 6ae:	0e 94 02 02 	call	0x404	; 0x404 <_ZN12SystemKernel11releaseUARTEv>
- 6b2:	44 ef       	ldi	r20, 0xF4	; 244
- 6b4:	51 e0       	ldi	r21, 0x01	; 1
- 6b6:	60 e0       	ldi	r22, 0x00	; 0
- 6b8:	70 e0       	ldi	r23, 0x00	; 0
- 6ba:	81 e5       	ldi	r24, 0x51	; 81
- 6bc:	91 e0       	ldi	r25, 0x01	; 1
- 6be:	df 91       	pop	r29
- 6c0:	cf 91       	pop	r28
- 6c2:	0c 94 88 01 	jmp	0x310	; 0x310 <_ZN9Scheduler5sleepEm>
+000004ae <_Z9UART_Init10UART_Statem13UART_DataBits13UART_StopBits11UART_Parity14UART_Interrupt>:
+ 4ae:	cf 92       	push	r12
+ 4b0:	df 92       	push	r13
+ 4b2:	ef 92       	push	r14
+ 4b4:	ff 92       	push	r15
+ 4b6:	0f 93       	push	r16
+ 4b8:	1f 93       	push	r17
+ 4ba:	cf 93       	push	r28
+ 4bc:	df 93       	push	r29
+ 4be:	d8 2e       	mov	r13, r24
+ 4c0:	d2 2f       	mov	r29, r18
+ 4c2:	cc 2d       	mov	r28, r12
+ 4c4:	cb 01       	movw	r24, r22
+ 4c6:	ba 01       	movw	r22, r20
+ 4c8:	0e 94 43 02 	call	0x486	; 0x486 <_Z16UART_SetBaudRatem>
+ 4cc:	8d 2f       	mov	r24, r29
+ 4ce:	88 0f       	add	r24, r24
+ 4d0:	80 68       	ori	r24, 0x80	; 128
+ 4d2:	98 e0       	ldi	r25, 0x08	; 8
+ 4d4:	09 9f       	mul	r16, r25
+ 4d6:	80 01       	movw	r16, r0
+ 4d8:	11 24       	eor	r1, r1
+ 4da:	08 2b       	or	r16, r24
+ 4dc:	80 e1       	ldi	r24, 0x10	; 16
+ 4de:	e8 9e       	mul	r14, r24
+ 4e0:	70 01       	movw	r14, r0
+ 4e2:	11 24       	eor	r1, r1
+ 4e4:	e0 2a       	or	r14, r16
+ 4e6:	e0 bc       	out	0x20, r14	; 32
+ 4e8:	88 e1       	ldi	r24, 0x18	; 24
+ 4ea:	8a b9       	out	0x0a, r24	; 10
+ 4ec:	d7 30       	cpi	r29, 0x07	; 7
+ 4ee:	09 f4       	brne	.+2      	; 0x4f2 <_Z9UART_Init10UART_Statem13UART_DataBits13UART_StopBits11UART_Parity14UART_Interrupt+0x44>
+ 4f0:	52 9a       	sbi	0x0a, 2	; 10
+ 4f2:	c2 30       	cpi	r28, 0x02	; 2
+ 4f4:	31 f0       	breq	.+12     	; 0x502 <_Z9UART_Init10UART_Statem13UART_DataBits13UART_StopBits11UART_Parity14UART_Interrupt+0x54>
+ 4f6:	c3 30       	cpi	r28, 0x03	; 3
+ 4f8:	31 f0       	breq	.+12     	; 0x506 <_Z9UART_Init10UART_Statem13UART_DataBits13UART_StopBits11UART_Parity14UART_Interrupt+0x58>
+ 4fa:	c1 30       	cpi	r28, 0x01	; 1
+ 4fc:	39 f4       	brne	.+14     	; 0x50c <_Z9UART_Init10UART_Statem13UART_DataBits13UART_StopBits11UART_Parity14UART_Interrupt+0x5e>
+ 4fe:	57 9a       	sbi	0x0a, 7	; 10
+ 500:	05 c0       	rjmp	.+10     	; 0x50c <_Z9UART_Init10UART_Statem13UART_DataBits13UART_StopBits11UART_Parity14UART_Interrupt+0x5e>
+ 502:	56 9a       	sbi	0x0a, 6	; 10
+ 504:	03 c0       	rjmp	.+6      	; 0x50c <_Z9UART_Init10UART_Statem13UART_DataBits13UART_StopBits11UART_Parity14UART_Interrupt+0x5e>
+ 506:	8a b1       	in	r24, 0x0a	; 10
+ 508:	80 6c       	ori	r24, 0xC0	; 192
+ 50a:	8a b9       	out	0x0a, r24	; 10
+ 50c:	d1 10       	cpse	r13, r1
+ 50e:	0a c0       	rjmp	.+20     	; 0x524 <_Z9UART_Init10UART_Statem13UART_DataBits13UART_StopBits11UART_Parity14UART_Interrupt+0x76>
+ 510:	df 91       	pop	r29
+ 512:	cf 91       	pop	r28
+ 514:	1f 91       	pop	r17
+ 516:	0f 91       	pop	r16
+ 518:	ff 90       	pop	r15
+ 51a:	ef 90       	pop	r14
+ 51c:	df 90       	pop	r13
+ 51e:	cf 90       	pop	r12
+ 520:	0c 94 3f 02 	jmp	0x47e	; 0x47e <_Z12UART_Disablev>
+ 524:	df 91       	pop	r29
+ 526:	cf 91       	pop	r28
+ 528:	1f 91       	pop	r17
+ 52a:	0f 91       	pop	r16
+ 52c:	ff 90       	pop	r15
+ 52e:	ef 90       	pop	r14
+ 530:	df 90       	pop	r13
+ 532:	cf 90       	pop	r12
+ 534:	08 95       	ret
 
-000006c6 <_Z9blinkTaskv>:
- 6c6:	40 91 48 01 	lds	r20, 0x0148	; 0x800148 <ledState>
- 6ca:	60 e0       	ldi	r22, 0x00	; 0
- 6cc:	82 e0       	ldi	r24, 0x02	; 2
- 6ce:	0e 94 16 02 	call	0x42c	; 0x42c <_Z13GPIO_WritePin9GPIO_Port8GPIO_Pin10GPIO_State>
- 6d2:	90 91 48 01 	lds	r25, 0x0148	; 0x800148 <ledState>
- 6d6:	81 e0       	ldi	r24, 0x01	; 1
- 6d8:	89 27       	eor	r24, r25
- 6da:	80 93 48 01 	sts	0x0148, r24	; 0x800148 <ledState>
- 6de:	48 ee       	ldi	r20, 0xE8	; 232
- 6e0:	53 e0       	ldi	r21, 0x03	; 3
- 6e2:	60 e0       	ldi	r22, 0x00	; 0
- 6e4:	70 e0       	ldi	r23, 0x00	; 0
- 6e6:	81 e5       	ldi	r24, 0x51	; 81
- 6e8:	91 e0       	ldi	r25, 0x01	; 1
- 6ea:	0c 94 88 01 	jmp	0x310	; 0x310 <_ZN9Scheduler5sleepEm>
+00000536 <_Z13UART_SendByteh>:
+ 536:	5d 9b       	sbis	0x0b, 5	; 11
+ 538:	fe cf       	rjmp	.-4      	; 0x536 <_Z13UART_SendByteh>
+ 53a:	8c b9       	out	0x0c, r24	; 12
+ 53c:	08 95       	ret
 
-000006ee <main>:
- 6ee:	81 e5       	ldi	r24, 0x51	; 81
- 6f0:	91 e0       	ldi	r25, 0x01	; 1
- 6f2:	0e 94 d1 01 	call	0x3a2	; 0x3a2 <_ZN12SystemKernel10initializeEv>
- 6f6:	43 e0       	ldi	r20, 0x03	; 3
- 6f8:	50 e0       	ldi	r21, 0x00	; 0
- 6fa:	63 ef       	ldi	r22, 0xF3	; 243
- 6fc:	72 e0       	ldi	r23, 0x02	; 2
- 6fe:	81 e5       	ldi	r24, 0x51	; 81
- 700:	91 e0       	ldi	r25, 0x01	; 1
- 702:	0e 94 57 01 	call	0x2ae	; 0x2ae <_ZN9Scheduler7addTaskEPFvvE12TaskPriority>
- 706:	42 e0       	ldi	r20, 0x02	; 2
- 708:	50 e0       	ldi	r21, 0x00	; 0
- 70a:	6b e2       	ldi	r22, 0x2B	; 43
- 70c:	73 e0       	ldi	r23, 0x03	; 3
- 70e:	81 e5       	ldi	r24, 0x51	; 81
- 710:	91 e0       	ldi	r25, 0x01	; 1
- 712:	0e 94 57 01 	call	0x2ae	; 0x2ae <_ZN9Scheduler7addTaskEPFvvE12TaskPriority>
- 716:	41 e0       	ldi	r20, 0x01	; 1
- 718:	50 e0       	ldi	r21, 0x00	; 0
- 71a:	63 e6       	ldi	r22, 0x63	; 99
- 71c:	73 e0       	ldi	r23, 0x03	; 3
- 71e:	81 e5       	ldi	r24, 0x51	; 81
- 720:	91 e0       	ldi	r25, 0x01	; 1
- 722:	0e 94 57 01 	call	0x2ae	; 0x2ae <_ZN9Scheduler7addTaskEPFvvE12TaskPriority>
- 726:	81 e5       	ldi	r24, 0x51	; 81
- 728:	91 e0       	ldi	r25, 0x01	; 1
- 72a:	0e 94 04 01 	call	0x208	; 0x208 <_ZN9Scheduler8dispatchEv>
- 72e:	fb cf       	rjmp	.-10     	; 0x726 <main+0x38>
+0000053e <__vector_13>:
+ 53e:	1f 92       	push	r1
+ 540:	0f 92       	push	r0
+ 542:	0f b6       	in	r0, 0x3f	; 63
+ 544:	0f 92       	push	r0
+ 546:	11 24       	eor	r1, r1
+ 548:	2f 93       	push	r18
+ 54a:	3f 93       	push	r19
+ 54c:	4f 93       	push	r20
+ 54e:	5f 93       	push	r21
+ 550:	6f 93       	push	r22
+ 552:	7f 93       	push	r23
+ 554:	8f 93       	push	r24
+ 556:	9f 93       	push	r25
+ 558:	af 93       	push	r26
+ 55a:	bf 93       	push	r27
+ 55c:	ef 93       	push	r30
+ 55e:	ff 93       	push	r31
+ 560:	8c b1       	in	r24, 0x0c	; 12
+ 562:	e0 91 b6 00 	lds	r30, 0x00B6	; 0x8000b6 <_ZL16uart_rx_callback>
+ 566:	f0 91 b7 00 	lds	r31, 0x00B7	; 0x8000b7 <_ZL16uart_rx_callback+0x1>
+ 56a:	30 97       	sbiw	r30, 0x00	; 0
+ 56c:	11 f0       	breq	.+4      	; 0x572 <__vector_13+0x34>
+ 56e:	09 95       	icall
+ 570:	13 c0       	rjmp	.+38     	; 0x598 <__vector_13+0x5a>
+ 572:	20 91 bb 00 	lds	r18, 0x00BB	; 0x8000bb <_ZL12uart_rx_head>
+ 576:	30 e0       	ldi	r19, 0x00	; 0
+ 578:	2f 5f       	subi	r18, 0xFF	; 255
+ 57a:	3f 4f       	sbci	r19, 0xFF	; 255
+ 57c:	2f 73       	andi	r18, 0x3F	; 63
+ 57e:	33 27       	eor	r19, r19
+ 580:	90 91 ba 00 	lds	r25, 0x00BA	; 0x8000ba <_ZL12uart_rx_tail>
+ 584:	92 17       	cp	r25, r18
+ 586:	41 f0       	breq	.+16     	; 0x598 <__vector_13+0x5a>
+ 588:	e0 91 bb 00 	lds	r30, 0x00BB	; 0x8000bb <_ZL12uart_rx_head>
+ 58c:	f0 e0       	ldi	r31, 0x00	; 0
+ 58e:	e4 50       	subi	r30, 0x04	; 4
+ 590:	ff 4f       	sbci	r31, 0xFF	; 255
+ 592:	80 83       	st	Z, r24
+ 594:	20 93 bb 00 	sts	0x00BB, r18	; 0x8000bb <_ZL12uart_rx_head>
+ 598:	ff 91       	pop	r31
+ 59a:	ef 91       	pop	r30
+ 59c:	bf 91       	pop	r27
+ 59e:	af 91       	pop	r26
+ 5a0:	9f 91       	pop	r25
+ 5a2:	8f 91       	pop	r24
+ 5a4:	7f 91       	pop	r23
+ 5a6:	6f 91       	pop	r22
+ 5a8:	5f 91       	pop	r21
+ 5aa:	4f 91       	pop	r20
+ 5ac:	3f 91       	pop	r19
+ 5ae:	2f 91       	pop	r18
+ 5b0:	0f 90       	pop	r0
+ 5b2:	0f be       	out	0x3f, r0	; 63
+ 5b4:	0f 90       	pop	r0
+ 5b6:	1f 90       	pop	r1
+ 5b8:	18 95       	reti
 
-00000730 <_GLOBAL__sub_I_Kernel>:
- 730:	81 e5       	ldi	r24, 0x51	; 81
+000005ba <__vector_15>:
+ 5ba:	1f 92       	push	r1
+ 5bc:	0f 92       	push	r0
+ 5be:	0f b6       	in	r0, 0x3f	; 63
+ 5c0:	0f 92       	push	r0
+ 5c2:	11 24       	eor	r1, r1
+ 5c4:	8f 93       	push	r24
+ 5c6:	9f 93       	push	r25
+ 5c8:	ef 93       	push	r30
+ 5ca:	ff 93       	push	r31
+ 5cc:	90 91 b9 00 	lds	r25, 0x00B9	; 0x8000b9 <_ZL12uart_tx_head>
+ 5d0:	80 91 b8 00 	lds	r24, 0x00B8	; 0x8000b8 <_ZL12uart_tx_tail>
+ 5d4:	98 17       	cp	r25, r24
+ 5d6:	79 f0       	breq	.+30     	; 0x5f6 <__vector_15+0x3c>
+ 5d8:	e0 91 b8 00 	lds	r30, 0x00B8	; 0x8000b8 <_ZL12uart_tx_tail>
+ 5dc:	f0 e0       	ldi	r31, 0x00	; 0
+ 5de:	e4 54       	subi	r30, 0x44	; 68
+ 5e0:	ff 4f       	sbci	r31, 0xFF	; 255
+ 5e2:	80 81       	ld	r24, Z
+ 5e4:	8c b9       	out	0x0c, r24	; 12
+ 5e6:	80 91 b8 00 	lds	r24, 0x00B8	; 0x8000b8 <_ZL12uart_tx_tail>
+ 5ea:	90 e0       	ldi	r25, 0x00	; 0
+ 5ec:	01 96       	adiw	r24, 0x01	; 1
+ 5ee:	8f 73       	andi	r24, 0x3F	; 63
+ 5f0:	99 27       	eor	r25, r25
+ 5f2:	80 93 b8 00 	sts	0x00B8, r24	; 0x8000b8 <_ZL12uart_tx_tail>
+ 5f6:	ff 91       	pop	r31
+ 5f8:	ef 91       	pop	r30
+ 5fa:	9f 91       	pop	r25
+ 5fc:	8f 91       	pop	r24
+ 5fe:	0f 90       	pop	r0
+ 600:	0f be       	out	0x3f, r0	; 63
+ 602:	0f 90       	pop	r0
+ 604:	1f 90       	pop	r1
+ 606:	18 95       	reti
+
+00000608 <_Z8fastTaskv>:
+ 608:	cf 93       	push	r28
+ 60a:	df 93       	push	r29
+ 60c:	85 e5       	ldi	r24, 0x55	; 85
+ 60e:	91 e0       	ldi	r25, 0x01	; 1
+ 610:	0e 94 fc 00 	call	0x1f8	; 0x1f8 <_ZN12SystemKernel7getUARTEv>
+ 614:	ec 01       	movw	r28, r24
+ 616:	6f e9       	ldi	r22, 0x9F	; 159
+ 618:	70 e0       	ldi	r23, 0x00	; 0
+ 61a:	0e 94 e7 03 	call	0x7ce	; 0x7ce <_ZN13UART_Resource5printEPKc>
+ 61e:	80 91 51 01 	lds	r24, 0x0151	; 0x800151 <fastCounter>
+ 622:	90 91 52 01 	lds	r25, 0x0152	; 0x800152 <fastCounter+0x1>
+ 626:	a0 91 53 01 	lds	r26, 0x0153	; 0x800153 <fastCounter+0x2>
+ 62a:	b0 91 54 01 	lds	r27, 0x0154	; 0x800154 <fastCounter+0x3>
+ 62e:	ac 01       	movw	r20, r24
+ 630:	bd 01       	movw	r22, r26
+ 632:	4f 5f       	subi	r20, 0xFF	; 255
+ 634:	5f 4f       	sbci	r21, 0xFF	; 255
+ 636:	6f 4f       	sbci	r22, 0xFF	; 255
+ 638:	7f 4f       	sbci	r23, 0xFF	; 255
+ 63a:	40 93 51 01 	sts	0x0151, r20	; 0x800151 <fastCounter>
+ 63e:	50 93 52 01 	sts	0x0152, r21	; 0x800152 <fastCounter+0x1>
+ 642:	60 93 53 01 	sts	0x0153, r22	; 0x800153 <fastCounter+0x2>
+ 646:	70 93 54 01 	sts	0x0154, r23	; 0x800154 <fastCounter+0x3>
+ 64a:	4a e0       	ldi	r20, 0x0A	; 10
+ 64c:	6c e3       	ldi	r22, 0x3C	; 60
+ 64e:	71 e0       	ldi	r23, 0x01	; 1
+ 650:	0e 94 43 04 	call	0x886	; 0x886 <__itoa_ncheck>
+ 654:	bc 01       	movw	r22, r24
+ 656:	ce 01       	movw	r24, r28
+ 658:	0e 94 e7 03 	call	0x7ce	; 0x7ce <_ZN13UART_Resource5printEPKc>
+ 65c:	85 e5       	ldi	r24, 0x55	; 85
+ 65e:	91 e0       	ldi	r25, 0x01	; 1
+ 660:	0e 94 00 01 	call	0x200	; 0x200 <_ZN12SystemKernel11releaseUARTEv>
+ 664:	42 e3       	ldi	r20, 0x32	; 50
+ 666:	50 e0       	ldi	r21, 0x00	; 0
+ 668:	60 e0       	ldi	r22, 0x00	; 0
+ 66a:	70 e0       	ldi	r23, 0x00	; 0
+ 66c:	85 e5       	ldi	r24, 0x55	; 85
+ 66e:	91 e0       	ldi	r25, 0x01	; 1
+ 670:	df 91       	pop	r29
+ 672:	cf 91       	pop	r28
+ 674:	0c 94 08 02 	jmp	0x410	; 0x410 <_ZN11TaskManager5sleepEm>
+
+00000678 <_Z8slowTaskv>:
+ 678:	cf 93       	push	r28
+ 67a:	df 93       	push	r29
+ 67c:	85 e5       	ldi	r24, 0x55	; 85
+ 67e:	91 e0       	ldi	r25, 0x01	; 1
+ 680:	0e 94 fc 00 	call	0x1f8	; 0x1f8 <_ZN12SystemKernel7getUARTEv>
+ 684:	ec 01       	movw	r28, r24
+ 686:	67 ea       	ldi	r22, 0xA7	; 167
+ 688:	70 e0       	ldi	r23, 0x00	; 0
+ 68a:	0e 94 e7 03 	call	0x7ce	; 0x7ce <_ZN13UART_Resource5printEPKc>
+ 68e:	80 91 4d 01 	lds	r24, 0x014D	; 0x80014d <slowCounter>
+ 692:	90 91 4e 01 	lds	r25, 0x014E	; 0x80014e <slowCounter+0x1>
+ 696:	a0 91 4f 01 	lds	r26, 0x014F	; 0x80014f <slowCounter+0x2>
+ 69a:	b0 91 50 01 	lds	r27, 0x0150	; 0x800150 <slowCounter+0x3>
+ 69e:	ac 01       	movw	r20, r24
+ 6a0:	bd 01       	movw	r22, r26
+ 6a2:	4f 5f       	subi	r20, 0xFF	; 255
+ 6a4:	5f 4f       	sbci	r21, 0xFF	; 255
+ 6a6:	6f 4f       	sbci	r22, 0xFF	; 255
+ 6a8:	7f 4f       	sbci	r23, 0xFF	; 255
+ 6aa:	40 93 4d 01 	sts	0x014D, r20	; 0x80014d <slowCounter>
+ 6ae:	50 93 4e 01 	sts	0x014E, r21	; 0x80014e <slowCounter+0x1>
+ 6b2:	60 93 4f 01 	sts	0x014F, r22	; 0x80014f <slowCounter+0x2>
+ 6b6:	70 93 50 01 	sts	0x0150, r23	; 0x800150 <slowCounter+0x3>
+ 6ba:	4a e0       	ldi	r20, 0x0A	; 10
+ 6bc:	6c e3       	ldi	r22, 0x3C	; 60
+ 6be:	71 e0       	ldi	r23, 0x01	; 1
+ 6c0:	0e 94 43 04 	call	0x886	; 0x886 <__itoa_ncheck>
+ 6c4:	bc 01       	movw	r22, r24
+ 6c6:	ce 01       	movw	r24, r28
+ 6c8:	0e 94 e7 03 	call	0x7ce	; 0x7ce <_ZN13UART_Resource5printEPKc>
+ 6cc:	85 e5       	ldi	r24, 0x55	; 85
+ 6ce:	91 e0       	ldi	r25, 0x01	; 1
+ 6d0:	0e 94 00 01 	call	0x200	; 0x200 <_ZN12SystemKernel11releaseUARTEv>
+ 6d4:	44 ef       	ldi	r20, 0xF4	; 244
+ 6d6:	51 e0       	ldi	r21, 0x01	; 1
+ 6d8:	60 e0       	ldi	r22, 0x00	; 0
+ 6da:	70 e0       	ldi	r23, 0x00	; 0
+ 6dc:	85 e5       	ldi	r24, 0x55	; 85
+ 6de:	91 e0       	ldi	r25, 0x01	; 1
+ 6e0:	df 91       	pop	r29
+ 6e2:	cf 91       	pop	r28
+ 6e4:	0c 94 08 02 	jmp	0x410	; 0x410 <_ZN11TaskManager5sleepEm>
+
+000006e8 <_Z9blinkTaskv>:
+ 6e8:	40 91 4c 01 	lds	r20, 0x014C	; 0x80014c <ledState>
+ 6ec:	60 e0       	ldi	r22, 0x00	; 0
+ 6ee:	82 e0       	ldi	r24, 0x02	; 2
+ 6f0:	0e 94 27 02 	call	0x44e	; 0x44e <_Z13GPIO_WritePin9GPIO_Port8GPIO_Pin10GPIO_State>
+ 6f4:	90 91 4c 01 	lds	r25, 0x014C	; 0x80014c <ledState>
+ 6f8:	81 e0       	ldi	r24, 0x01	; 1
+ 6fa:	89 27       	eor	r24, r25
+ 6fc:	80 93 4c 01 	sts	0x014C, r24	; 0x80014c <ledState>
+ 700:	40 ed       	ldi	r20, 0xD0	; 208
+ 702:	57 e0       	ldi	r21, 0x07	; 7
+ 704:	60 e0       	ldi	r22, 0x00	; 0
+ 706:	70 e0       	ldi	r23, 0x00	; 0
+ 708:	85 e5       	ldi	r24, 0x55	; 85
+ 70a:	91 e0       	ldi	r25, 0x01	; 1
+ 70c:	0c 94 08 02 	jmp	0x410	; 0x410 <_ZN11TaskManager5sleepEm>
+
+00000710 <main>:
+ 710:	85 e5       	ldi	r24, 0x55	; 85
+ 712:	91 e0       	ldi	r25, 0x01	; 1
+ 714:	0e 94 eb 00 	call	0x1d6	; 0x1d6 <_ZN12SystemKernel10initializeEv>
+ 718:	43 e0       	ldi	r20, 0x03	; 3
+ 71a:	50 e0       	ldi	r21, 0x00	; 0
+ 71c:	64 e0       	ldi	r22, 0x04	; 4
+ 71e:	73 e0       	ldi	r23, 0x03	; 3
+ 720:	85 e5       	ldi	r24, 0x55	; 85
+ 722:	91 e0       	ldi	r25, 0x01	; 1
+ 724:	0e 94 fa 00 	call	0x1f4	; 0x1f4 <_ZN12SystemKernel7addTaskEPFvvE12TaskPriority>
+ 728:	42 e0       	ldi	r20, 0x02	; 2
+ 72a:	50 e0       	ldi	r21, 0x00	; 0
+ 72c:	6c e3       	ldi	r22, 0x3C	; 60
+ 72e:	73 e0       	ldi	r23, 0x03	; 3
+ 730:	85 e5       	ldi	r24, 0x55	; 85
  732:	91 e0       	ldi	r25, 0x01	; 1
- 734:	0c 94 98 01 	jmp	0x330	; 0x330 <_ZN12SystemKernelC1Ev>
+ 734:	0e 94 fa 00 	call	0x1f4	; 0x1f4 <_ZN12SystemKernel7addTaskEPFvvE12TaskPriority>
+ 738:	41 e0       	ldi	r20, 0x01	; 1
+ 73a:	50 e0       	ldi	r21, 0x00	; 0
+ 73c:	64 e7       	ldi	r22, 0x74	; 116
+ 73e:	73 e0       	ldi	r23, 0x03	; 3
+ 740:	85 e5       	ldi	r24, 0x55	; 85
+ 742:	91 e0       	ldi	r25, 0x01	; 1
+ 744:	0e 94 fa 00 	call	0x1f4	; 0x1f4 <_ZN12SystemKernel7addTaskEPFvvE12TaskPriority>
+ 748:	85 e5       	ldi	r24, 0x55	; 85
+ 74a:	91 e0       	ldi	r25, 0x01	; 1
+ 74c:	0e 94 04 01 	call	0x208	; 0x208 <_ZN12SystemKernel3runEv>
+ 750:	81 e0       	ldi	r24, 0x01	; 1
+ 752:	90 e0       	ldi	r25, 0x00	; 0
+ 754:	08 95       	ret
 
-00000738 <_GLOBAL__sub_D_Kernel>:
- 738:	80 e2       	ldi	r24, 0x20	; 32
- 73a:	92 e0       	ldi	r25, 0x02	; 2
- 73c:	0c 94 aa 03 	jmp	0x754	; 0x754 <_ZN13UART_ResourceD1Ev>
+00000756 <_GLOBAL__sub_I_Kernel>:
+ 756:	85 e5       	ldi	r24, 0x55	; 85
+ 758:	91 e0       	ldi	r25, 0x01	; 1
+ 75a:	0c 94 d1 00 	jmp	0x1a2	; 0x1a2 <_ZN12SystemKernelC1Ev>
 
-00000740 <_ZN13UART_ResourceC1ERKNS_6ConfigE>:
- 740:	29 e0       	ldi	r18, 0x09	; 9
- 742:	fb 01       	movw	r30, r22
- 744:	dc 01       	movw	r26, r24
- 746:	01 90       	ld	r0, Z+
- 748:	0d 92       	st	X+, r0
- 74a:	2a 95       	dec	r18
- 74c:	e1 f7       	brne	.-8      	; 0x746 <_ZN13UART_ResourceC1ERKNS_6ConfigE+0x6>
- 74e:	fc 01       	movw	r30, r24
- 750:	11 86       	std	Z+9, r1	; 0x09
- 752:	08 95       	ret
+0000075e <_GLOBAL__sub_D_Kernel>:
+ 75e:	84 e2       	ldi	r24, 0x24	; 36
+ 760:	92 e0       	ldi	r25, 0x02	; 2
+ 762:	0c 94 bd 03 	jmp	0x77a	; 0x77a <_ZN13UART_ResourceD1Ev>
 
-00000754 <_ZN13UART_ResourceD1Ev>:
- 754:	fc 01       	movw	r30, r24
- 756:	81 85       	ldd	r24, Z+9	; 0x09
- 758:	81 11       	cpse	r24, r1
- 75a:	0c 94 2e 02 	jmp	0x45c	; 0x45c <_Z12UART_Disablev>
- 75e:	08 95       	ret
+00000766 <_ZN13UART_ResourceC1ERKNS_6ConfigE>:
+ 766:	29 e0       	ldi	r18, 0x09	; 9
+ 768:	fb 01       	movw	r30, r22
+ 76a:	dc 01       	movw	r26, r24
+ 76c:	01 90       	ld	r0, Z+
+ 76e:	0d 92       	st	X+, r0
+ 770:	2a 95       	dec	r18
+ 772:	e1 f7       	brne	.-8      	; 0x76c <_ZN13UART_ResourceC1ERKNS_6ConfigE+0x6>
+ 774:	fc 01       	movw	r30, r24
+ 776:	11 86       	std	Z+9, r1	; 0x09
+ 778:	08 95       	ret
 
-00000760 <_ZN13UART_Resource5startEv>:
- 760:	cf 92       	push	r12
- 762:	ef 92       	push	r14
- 764:	0f 93       	push	r16
- 766:	cf 93       	push	r28
- 768:	df 93       	push	r29
- 76a:	ec 01       	movw	r28, r24
- 76c:	4d 81       	ldd	r20, Y+5	; 0x05
- 76e:	5e 81       	ldd	r21, Y+6	; 0x06
- 770:	6f 81       	ldd	r22, Y+7	; 0x07
- 772:	78 85       	ldd	r23, Y+8	; 0x08
- 774:	cc 80       	ldd	r12, Y+4	; 0x04
- 776:	eb 80       	ldd	r14, Y+3	; 0x03
- 778:	0a 81       	ldd	r16, Y+2	; 0x02
- 77a:	29 81       	ldd	r18, Y+1	; 0x01
- 77c:	88 81       	ld	r24, Y
- 77e:	0e 94 46 02 	call	0x48c	; 0x48c <_Z9UART_Init10UART_Statem13UART_DataBits13UART_StopBits11UART_Parity14UART_Interrupt>
- 782:	81 e0       	ldi	r24, 0x01	; 1
- 784:	98 81       	ld	r25, Y
- 786:	91 30       	cpi	r25, 0x01	; 1
- 788:	09 f0       	breq	.+2      	; 0x78c <_ZN13UART_Resource5startEv+0x2c>
- 78a:	80 e0       	ldi	r24, 0x00	; 0
- 78c:	89 87       	std	Y+9, r24	; 0x09
- 78e:	df 91       	pop	r29
- 790:	cf 91       	pop	r28
- 792:	0f 91       	pop	r16
- 794:	ef 90       	pop	r14
- 796:	cf 90       	pop	r12
- 798:	08 95       	ret
+0000077a <_ZN13UART_ResourceD1Ev>:
+ 77a:	fc 01       	movw	r30, r24
+ 77c:	81 85       	ldd	r24, Z+9	; 0x09
+ 77e:	81 11       	cpse	r24, r1
+ 780:	0c 94 3f 02 	jmp	0x47e	; 0x47e <_Z12UART_Disablev>
+ 784:	08 95       	ret
 
-0000079a <_ZN13UART_Resource5startEm>:
- 79a:	fc 01       	movw	r30, r24
- 79c:	45 83       	std	Z+5, r20	; 0x05
- 79e:	56 83       	std	Z+6, r21	; 0x06
- 7a0:	67 83       	std	Z+7, r22	; 0x07
- 7a2:	70 87       	std	Z+8, r23	; 0x08
- 7a4:	0c 94 b0 03 	jmp	0x760	; 0x760 <_ZN13UART_Resource5startEv>
+00000786 <_ZN13UART_Resource5startEv>:
+ 786:	cf 92       	push	r12
+ 788:	ef 92       	push	r14
+ 78a:	0f 93       	push	r16
+ 78c:	cf 93       	push	r28
+ 78e:	df 93       	push	r29
+ 790:	ec 01       	movw	r28, r24
+ 792:	4d 81       	ldd	r20, Y+5	; 0x05
+ 794:	5e 81       	ldd	r21, Y+6	; 0x06
+ 796:	6f 81       	ldd	r22, Y+7	; 0x07
+ 798:	78 85       	ldd	r23, Y+8	; 0x08
+ 79a:	cc 80       	ldd	r12, Y+4	; 0x04
+ 79c:	eb 80       	ldd	r14, Y+3	; 0x03
+ 79e:	0a 81       	ldd	r16, Y+2	; 0x02
+ 7a0:	29 81       	ldd	r18, Y+1	; 0x01
+ 7a2:	88 81       	ld	r24, Y
+ 7a4:	0e 94 57 02 	call	0x4ae	; 0x4ae <_Z9UART_Init10UART_Statem13UART_DataBits13UART_StopBits11UART_Parity14UART_Interrupt>
+ 7a8:	81 e0       	ldi	r24, 0x01	; 1
+ 7aa:	98 81       	ld	r25, Y
+ 7ac:	91 30       	cpi	r25, 0x01	; 1
+ 7ae:	09 f0       	breq	.+2      	; 0x7b2 <_ZN13UART_Resource5startEv+0x2c>
+ 7b0:	80 e0       	ldi	r24, 0x00	; 0
+ 7b2:	89 87       	std	Y+9, r24	; 0x09
+ 7b4:	df 91       	pop	r29
+ 7b6:	cf 91       	pop	r28
+ 7b8:	0f 91       	pop	r16
+ 7ba:	ef 90       	pop	r14
+ 7bc:	cf 90       	pop	r12
+ 7be:	08 95       	ret
 
-000007a8 <_ZN13UART_Resource5printEPKc>:
- 7a8:	0f 93       	push	r16
- 7aa:	1f 93       	push	r17
- 7ac:	cf 93       	push	r28
- 7ae:	df 93       	push	r29
- 7b0:	fc 01       	movw	r30, r24
- 7b2:	81 85       	ldd	r24, Z+9	; 0x09
- 7b4:	88 23       	and	r24, r24
- 7b6:	89 f0       	breq	.+34     	; 0x7da <_ZN13UART_Resource5printEPKc+0x32>
- 7b8:	61 15       	cp	r22, r1
- 7ba:	71 05       	cpc	r23, r1
- 7bc:	71 f0       	breq	.+28     	; 0x7da <_ZN13UART_Resource5printEPKc+0x32>
- 7be:	eb 01       	movw	r28, r22
- 7c0:	8b 01       	movw	r16, r22
- 7c2:	c8 01       	movw	r24, r16
- 7c4:	8c 1b       	sub	r24, r28
- 7c6:	9d 0b       	sbc	r25, r29
- 7c8:	f8 01       	movw	r30, r16
- 7ca:	21 91       	ld	r18, Z+
- 7cc:	8f 01       	movw	r16, r30
- 7ce:	22 23       	and	r18, r18
- 7d0:	31 f0       	breq	.+12     	; 0x7de <_ZN13UART_Resource5printEPKc+0x36>
- 7d2:	82 2f       	mov	r24, r18
- 7d4:	0e 94 8a 02 	call	0x514	; 0x514 <_Z13UART_SendByteh>
- 7d8:	f4 cf       	rjmp	.-24     	; 0x7c2 <_ZN13UART_Resource5printEPKc+0x1a>
- 7da:	80 e0       	ldi	r24, 0x00	; 0
- 7dc:	90 e0       	ldi	r25, 0x00	; 0
- 7de:	df 91       	pop	r29
- 7e0:	cf 91       	pop	r28
- 7e2:	1f 91       	pop	r17
- 7e4:	0f 91       	pop	r16
- 7e6:	08 95       	ret
+000007c0 <_ZN13UART_Resource5startEm>:
+ 7c0:	fc 01       	movw	r30, r24
+ 7c2:	45 83       	std	Z+5, r20	; 0x05
+ 7c4:	56 83       	std	Z+6, r21	; 0x06
+ 7c6:	67 83       	std	Z+7, r22	; 0x07
+ 7c8:	70 87       	std	Z+8, r23	; 0x08
+ 7ca:	0c 94 c3 03 	jmp	0x786	; 0x786 <_ZN13UART_Resource5startEv>
 
-000007e8 <_ZN13UART_Resource7printlnEPKc>:
- 7e8:	0f 93       	push	r16
- 7ea:	1f 93       	push	r17
- 7ec:	cf 93       	push	r28
- 7ee:	df 93       	push	r29
- 7f0:	ec 01       	movw	r28, r24
- 7f2:	0e 94 d4 03 	call	0x7a8	; 0x7a8 <_ZN13UART_Resource5printEPKc>
- 7f6:	8c 01       	movw	r16, r24
- 7f8:	6d ea       	ldi	r22, 0xAD	; 173
- 7fa:	70 e0       	ldi	r23, 0x00	; 0
- 7fc:	ce 01       	movw	r24, r28
- 7fe:	0e 94 d4 03 	call	0x7a8	; 0x7a8 <_ZN13UART_Resource5printEPKc>
- 802:	80 0f       	add	r24, r16
- 804:	91 1f       	adc	r25, r17
- 806:	df 91       	pop	r29
- 808:	cf 91       	pop	r28
- 80a:	1f 91       	pop	r17
- 80c:	0f 91       	pop	r16
- 80e:	08 95       	ret
+000007ce <_ZN13UART_Resource5printEPKc>:
+ 7ce:	0f 93       	push	r16
+ 7d0:	1f 93       	push	r17
+ 7d2:	cf 93       	push	r28
+ 7d4:	df 93       	push	r29
+ 7d6:	fc 01       	movw	r30, r24
+ 7d8:	81 85       	ldd	r24, Z+9	; 0x09
+ 7da:	88 23       	and	r24, r24
+ 7dc:	89 f0       	breq	.+34     	; 0x800 <__DATA_REGION_LENGTH__>
+ 7de:	61 15       	cp	r22, r1
+ 7e0:	71 05       	cpc	r23, r1
+ 7e2:	71 f0       	breq	.+28     	; 0x800 <__DATA_REGION_LENGTH__>
+ 7e4:	eb 01       	movw	r28, r22
+ 7e6:	8b 01       	movw	r16, r22
+ 7e8:	c8 01       	movw	r24, r16
+ 7ea:	8c 1b       	sub	r24, r28
+ 7ec:	9d 0b       	sbc	r25, r29
+ 7ee:	f8 01       	movw	r30, r16
+ 7f0:	21 91       	ld	r18, Z+
+ 7f2:	8f 01       	movw	r16, r30
+ 7f4:	22 23       	and	r18, r18
+ 7f6:	31 f0       	breq	.+12     	; 0x804 <__DATA_REGION_LENGTH__+0x4>
+ 7f8:	82 2f       	mov	r24, r18
+ 7fa:	0e 94 9b 02 	call	0x536	; 0x536 <_Z13UART_SendByteh>
+ 7fe:	f4 cf       	rjmp	.-24     	; 0x7e8 <_ZN13UART_Resource5printEPKc+0x1a>
+ 800:	80 e0       	ldi	r24, 0x00	; 0
+ 802:	90 e0       	ldi	r25, 0x00	; 0
+ 804:	df 91       	pop	r29
+ 806:	cf 91       	pop	r28
+ 808:	1f 91       	pop	r17
+ 80a:	0f 91       	pop	r16
+ 80c:	08 95       	ret
 
-00000810 <__udivmodsi4>:
- 810:	a1 e2       	ldi	r26, 0x21	; 33
- 812:	1a 2e       	mov	r1, r26
- 814:	aa 1b       	sub	r26, r26
- 816:	bb 1b       	sub	r27, r27
- 818:	fd 01       	movw	r30, r26
- 81a:	0d c0       	rjmp	.+26     	; 0x836 <__udivmodsi4_ep>
+0000080e <_ZN13UART_Resource7printlnEPKc>:
+ 80e:	0f 93       	push	r16
+ 810:	1f 93       	push	r17
+ 812:	cf 93       	push	r28
+ 814:	df 93       	push	r29
+ 816:	ec 01       	movw	r28, r24
+ 818:	0e 94 e7 03 	call	0x7ce	; 0x7ce <_ZN13UART_Resource5printEPKc>
+ 81c:	8c 01       	movw	r16, r24
+ 81e:	6f ea       	ldi	r22, 0xAF	; 175
+ 820:	70 e0       	ldi	r23, 0x00	; 0
+ 822:	ce 01       	movw	r24, r28
+ 824:	0e 94 e7 03 	call	0x7ce	; 0x7ce <_ZN13UART_Resource5printEPKc>
+ 828:	80 0f       	add	r24, r16
+ 82a:	91 1f       	adc	r25, r17
+ 82c:	df 91       	pop	r29
+ 82e:	cf 91       	pop	r28
+ 830:	1f 91       	pop	r17
+ 832:	0f 91       	pop	r16
+ 834:	08 95       	ret
 
-0000081c <__udivmodsi4_loop>:
- 81c:	aa 1f       	adc	r26, r26
- 81e:	bb 1f       	adc	r27, r27
- 820:	ee 1f       	adc	r30, r30
- 822:	ff 1f       	adc	r31, r31
- 824:	a2 17       	cp	r26, r18
- 826:	b3 07       	cpc	r27, r19
- 828:	e4 07       	cpc	r30, r20
- 82a:	f5 07       	cpc	r31, r21
- 82c:	20 f0       	brcs	.+8      	; 0x836 <__udivmodsi4_ep>
- 82e:	a2 1b       	sub	r26, r18
- 830:	b3 0b       	sbc	r27, r19
- 832:	e4 0b       	sbc	r30, r20
- 834:	f5 0b       	sbc	r31, r21
+00000836 <__udivmodsi4>:
+ 836:	a1 e2       	ldi	r26, 0x21	; 33
+ 838:	1a 2e       	mov	r1, r26
+ 83a:	aa 1b       	sub	r26, r26
+ 83c:	bb 1b       	sub	r27, r27
+ 83e:	fd 01       	movw	r30, r26
+ 840:	0d c0       	rjmp	.+26     	; 0x85c <__udivmodsi4_ep>
 
-00000836 <__udivmodsi4_ep>:
- 836:	66 1f       	adc	r22, r22
- 838:	77 1f       	adc	r23, r23
- 83a:	88 1f       	adc	r24, r24
- 83c:	99 1f       	adc	r25, r25
- 83e:	1a 94       	dec	r1
- 840:	69 f7       	brne	.-38     	; 0x81c <__udivmodsi4_loop>
- 842:	60 95       	com	r22
- 844:	70 95       	com	r23
- 846:	80 95       	com	r24
- 848:	90 95       	com	r25
- 84a:	9b 01       	movw	r18, r22
- 84c:	ac 01       	movw	r20, r24
- 84e:	bd 01       	movw	r22, r26
- 850:	cf 01       	movw	r24, r30
- 852:	08 95       	ret
+00000842 <__udivmodsi4_loop>:
+ 842:	aa 1f       	adc	r26, r26
+ 844:	bb 1f       	adc	r27, r27
+ 846:	ee 1f       	adc	r30, r30
+ 848:	ff 1f       	adc	r31, r31
+ 84a:	a2 17       	cp	r26, r18
+ 84c:	b3 07       	cpc	r27, r19
+ 84e:	e4 07       	cpc	r30, r20
+ 850:	f5 07       	cpc	r31, r21
+ 852:	20 f0       	brcs	.+8      	; 0x85c <__udivmodsi4_ep>
+ 854:	a2 1b       	sub	r26, r18
+ 856:	b3 0b       	sbc	r27, r19
+ 858:	e4 0b       	sbc	r30, r20
+ 85a:	f5 0b       	sbc	r31, r21
 
-00000854 <__tablejump2__>:
- 854:	ee 0f       	add	r30, r30
- 856:	ff 1f       	adc	r31, r31
- 858:	05 90       	lpm	r0, Z+
- 85a:	f4 91       	lpm	r31, Z
- 85c:	e0 2d       	mov	r30, r0
- 85e:	09 94       	ijmp
+0000085c <__udivmodsi4_ep>:
+ 85c:	66 1f       	adc	r22, r22
+ 85e:	77 1f       	adc	r23, r23
+ 860:	88 1f       	adc	r24, r24
+ 862:	99 1f       	adc	r25, r25
+ 864:	1a 94       	dec	r1
+ 866:	69 f7       	brne	.-38     	; 0x842 <__udivmodsi4_loop>
+ 868:	60 95       	com	r22
+ 86a:	70 95       	com	r23
+ 86c:	80 95       	com	r24
+ 86e:	90 95       	com	r25
+ 870:	9b 01       	movw	r18, r22
+ 872:	ac 01       	movw	r20, r24
+ 874:	bd 01       	movw	r22, r26
+ 876:	cf 01       	movw	r24, r30
+ 878:	08 95       	ret
 
-00000860 <__itoa_ncheck>:
- 860:	bb 27       	eor	r27, r27
- 862:	4a 30       	cpi	r20, 0x0A	; 10
- 864:	31 f4       	brne	.+12     	; 0x872 <__itoa_ncheck+0x12>
- 866:	99 23       	and	r25, r25
- 868:	22 f4       	brpl	.+8      	; 0x872 <__itoa_ncheck+0x12>
- 86a:	bd e2       	ldi	r27, 0x2D	; 45
- 86c:	90 95       	com	r25
- 86e:	81 95       	neg	r24
- 870:	9f 4f       	sbci	r25, 0xFF	; 255
- 872:	0c 94 3c 04 	jmp	0x878	; 0x878 <__utoa_common>
+0000087a <__tablejump2__>:
+ 87a:	ee 0f       	add	r30, r30
+ 87c:	ff 1f       	adc	r31, r31
+ 87e:	05 90       	lpm	r0, Z+
+ 880:	f4 91       	lpm	r31, Z
+ 882:	e0 2d       	mov	r30, r0
+ 884:	09 94       	ijmp
 
-00000876 <__utoa_ncheck>:
- 876:	bb 27       	eor	r27, r27
+00000886 <__itoa_ncheck>:
+ 886:	bb 27       	eor	r27, r27
+ 888:	4a 30       	cpi	r20, 0x0A	; 10
+ 88a:	31 f4       	brne	.+12     	; 0x898 <__itoa_ncheck+0x12>
+ 88c:	99 23       	and	r25, r25
+ 88e:	22 f4       	brpl	.+8      	; 0x898 <__itoa_ncheck+0x12>
+ 890:	bd e2       	ldi	r27, 0x2D	; 45
+ 892:	90 95       	com	r25
+ 894:	81 95       	neg	r24
+ 896:	9f 4f       	sbci	r25, 0xFF	; 255
+ 898:	0c 94 4f 04 	jmp	0x89e	; 0x89e <__utoa_common>
 
-00000878 <__utoa_common>:
- 878:	fb 01       	movw	r30, r22
- 87a:	55 27       	eor	r21, r21
- 87c:	aa 27       	eor	r26, r26
- 87e:	88 0f       	add	r24, r24
- 880:	99 1f       	adc	r25, r25
- 882:	aa 1f       	adc	r26, r26
- 884:	a4 17       	cp	r26, r20
- 886:	10 f0       	brcs	.+4      	; 0x88c <__utoa_common+0x14>
- 888:	a4 1b       	sub	r26, r20
- 88a:	83 95       	inc	r24
- 88c:	50 51       	subi	r21, 0x10	; 16
- 88e:	b9 f7       	brne	.-18     	; 0x87e <__utoa_common+0x6>
- 890:	a0 5d       	subi	r26, 0xD0	; 208
- 892:	aa 33       	cpi	r26, 0x3A	; 58
- 894:	08 f0       	brcs	.+2      	; 0x898 <__utoa_common+0x20>
- 896:	a9 5d       	subi	r26, 0xD9	; 217
- 898:	a1 93       	st	Z+, r26
- 89a:	00 97       	sbiw	r24, 0x00	; 0
- 89c:	79 f7       	brne	.-34     	; 0x87c <__utoa_common+0x4>
- 89e:	b1 11       	cpse	r27, r1
- 8a0:	b1 93       	st	Z+, r27
- 8a2:	11 92       	st	Z+, r1
- 8a4:	cb 01       	movw	r24, r22
- 8a6:	0c 94 55 04 	jmp	0x8aa	; 0x8aa <strrev>
+0000089c <__utoa_ncheck>:
+ 89c:	bb 27       	eor	r27, r27
 
-000008aa <strrev>:
- 8aa:	dc 01       	movw	r26, r24
- 8ac:	fc 01       	movw	r30, r24
- 8ae:	67 2f       	mov	r22, r23
- 8b0:	71 91       	ld	r23, Z+
- 8b2:	77 23       	and	r23, r23
- 8b4:	e1 f7       	brne	.-8      	; 0x8ae <strrev+0x4>
- 8b6:	32 97       	sbiw	r30, 0x02	; 2
- 8b8:	04 c0       	rjmp	.+8      	; 0x8c2 <strrev+0x18>
- 8ba:	7c 91       	ld	r23, X
- 8bc:	6d 93       	st	X+, r22
- 8be:	70 83       	st	Z, r23
- 8c0:	62 91       	ld	r22, -Z
- 8c2:	ae 17       	cp	r26, r30
- 8c4:	bf 07       	cpc	r27, r31
- 8c6:	c8 f3       	brcs	.-14     	; 0x8ba <strrev+0x10>
- 8c8:	08 95       	ret
+0000089e <__utoa_common>:
+ 89e:	fb 01       	movw	r30, r22
+ 8a0:	55 27       	eor	r21, r21
+ 8a2:	aa 27       	eor	r26, r26
+ 8a4:	88 0f       	add	r24, r24
+ 8a6:	99 1f       	adc	r25, r25
+ 8a8:	aa 1f       	adc	r26, r26
+ 8aa:	a4 17       	cp	r26, r20
+ 8ac:	10 f0       	brcs	.+4      	; 0x8b2 <__utoa_common+0x14>
+ 8ae:	a4 1b       	sub	r26, r20
+ 8b0:	83 95       	inc	r24
+ 8b2:	50 51       	subi	r21, 0x10	; 16
+ 8b4:	b9 f7       	brne	.-18     	; 0x8a4 <__utoa_common+0x6>
+ 8b6:	a0 5d       	subi	r26, 0xD0	; 208
+ 8b8:	aa 33       	cpi	r26, 0x3A	; 58
+ 8ba:	08 f0       	brcs	.+2      	; 0x8be <__utoa_common+0x20>
+ 8bc:	a9 5d       	subi	r26, 0xD9	; 217
+ 8be:	a1 93       	st	Z+, r26
+ 8c0:	00 97       	sbiw	r24, 0x00	; 0
+ 8c2:	79 f7       	brne	.-34     	; 0x8a2 <__utoa_common+0x4>
+ 8c4:	b1 11       	cpse	r27, r1
+ 8c6:	b1 93       	st	Z+, r27
+ 8c8:	11 92       	st	Z+, r1
+ 8ca:	cb 01       	movw	r24, r22
+ 8cc:	0c 94 68 04 	jmp	0x8d0	; 0x8d0 <strrev>
 
-000008ca <__do_global_dtors>:
- 8ca:	10 e0       	ldi	r17, 0x00	; 0
- 8cc:	cb e2       	ldi	r28, 0x2B	; 43
- 8ce:	d0 e0       	ldi	r29, 0x00	; 0
- 8d0:	04 c0       	rjmp	.+8      	; 0x8da <__do_global_dtors+0x10>
- 8d2:	fe 01       	movw	r30, r28
- 8d4:	0e 94 2a 04 	call	0x854	; 0x854 <__tablejump2__>
- 8d8:	21 96       	adiw	r28, 0x01	; 1
- 8da:	cc 32       	cpi	r28, 0x2C	; 44
- 8dc:	d1 07       	cpc	r29, r17
- 8de:	c9 f7       	brne	.-14     	; 0x8d2 <__do_global_dtors+0x8>
- 8e0:	f8 94       	cli
+000008d0 <strrev>:
+ 8d0:	dc 01       	movw	r26, r24
+ 8d2:	fc 01       	movw	r30, r24
+ 8d4:	67 2f       	mov	r22, r23
+ 8d6:	71 91       	ld	r23, Z+
+ 8d8:	77 23       	and	r23, r23
+ 8da:	e1 f7       	brne	.-8      	; 0x8d4 <strrev+0x4>
+ 8dc:	32 97       	sbiw	r30, 0x02	; 2
+ 8de:	04 c0       	rjmp	.+8      	; 0x8e8 <strrev+0x18>
+ 8e0:	7c 91       	ld	r23, X
+ 8e2:	6d 93       	st	X+, r22
+ 8e4:	70 83       	st	Z, r23
+ 8e6:	62 91       	ld	r22, -Z
+ 8e8:	ae 17       	cp	r26, r30
+ 8ea:	bf 07       	cpc	r27, r31
+ 8ec:	c8 f3       	brcs	.-14     	; 0x8e0 <strrev+0x10>
+ 8ee:	08 95       	ret
 
-000008e2 <__stop_program>:
- 8e2:	ff cf       	rjmp	.-2      	; 0x8e2 <__stop_program>
+000008f0 <__do_global_dtors>:
+ 8f0:	10 e0       	ldi	r17, 0x00	; 0
+ 8f2:	cb e2       	ldi	r28, 0x2B	; 43
+ 8f4:	d0 e0       	ldi	r29, 0x00	; 0
+ 8f6:	04 c0       	rjmp	.+8      	; 0x900 <__do_global_dtors+0x10>
+ 8f8:	fe 01       	movw	r30, r28
+ 8fa:	0e 94 3d 04 	call	0x87a	; 0x87a <__tablejump2__>
+ 8fe:	21 96       	adiw	r28, 0x01	; 1
+ 900:	cc 32       	cpi	r28, 0x2C	; 44
+ 902:	d1 07       	cpc	r29, r17
+ 904:	c9 f7       	brne	.-14     	; 0x8f8 <__do_global_dtors+0x8>
+ 906:	f8 94       	cli
+
+00000908 <__stop_program>:
+ 908:	ff cf       	rjmp	.-2      	; 0x908 <__stop_program>

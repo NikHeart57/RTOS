@@ -26,9 +26,9 @@ enum class TaskPriority
 typedef void (*TaskFunction)(void);
 
 /**
-	* @brief Структура, описывающая одну задачу в системе.
-	* @detail Планировщик будет работать с массивом таких структур.
-	*/
+ * @brief Структура, описывающая одну задачу в системе.
+ * @detail Планировщик будет работать с массивом таких структур.
+ */
 struct Task 
 {
 	TaskFunction function;    // Указатель на функцию задачи
@@ -39,13 +39,9 @@ struct Task
 	uint32_t lastRunTime;     // Время последнего запуска (на основе системных тиков)
 
 	// Конструктор по умолчанию
-	Task()		: function(nullptr), state(TaskState::READY), 
-				priority(TaskPriority::IDLE), 
-				tickCounter(0), tickInterval(0), lastRunTime(0) {}
+	Task():function(nullptr), state(TaskState::READY),priority(TaskPriority::IDLE),	tickCounter(0), tickInterval(0), lastRunTime(0) {}
     
 	// Конструктор для удобного создания
-	Task(TaskFunction func, TaskPriority prio)	: function(func), state(TaskState::READY), 
-												priority(prio), tickCounter(0), 
-												tickInterval(0), lastRunTime(0) {}
+	Task(TaskFunction func, TaskPriority prio):function(func), state(TaskState::READY), priority(prio), tickCounter(0),	tickInterval(0), lastRunTime(0) {}
 };
 

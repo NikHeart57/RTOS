@@ -2,9 +2,11 @@
 # Automatically-generated file. Do not edit or delete the file
 ################################################################################
 
-core\Scheduler.cpp
+core\ResourceManager.cpp
 
 core\SystemKernel.cpp
+
+core\TaskManager.cpp
 
 drivers\GPIO\GPIO.cpp
 

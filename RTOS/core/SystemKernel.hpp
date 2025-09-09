@@ -1,41 +1,34 @@
 #pragma once
-#include "../resources/UART_Resource.hpp"
-#include "Scheduler.hpp" // Оставляем это включение
-#include <stdlib.h>
-#include <stdint.h>
+#include "TaskManager.hpp"
+#include "ResourceManager.hpp"
 
-class SystemKernel
-{
+class SystemKernel {
 	private:
-	// ВЛАДЕНИЕ: SystemKernel - единоличный владелец этих ресурсов.
-	Scheduler scheduler_;                // Планировщик задач
-	static Scheduler* schedulerInstanceForISR_; // Статический указатель для ISR
-	UART_Resource UART_;                 // Ресурс UART
-	bool isUARTBusy_ = false;            // Флаг занятости ресурса
+	// ВЛАДЕНИЕ: Ядро владеет менеджерами.
+	TaskManager taskManager_;
+	ResourceManager resourceManager_;
+
+	// Указатели для ISR (статика остается)
+	static TaskManager* taskManagerInstanceForISR_;
+	static ResourceManager* resourceManagerInstanceForISR_;
 
 	public:
 	SystemKernel();
-	void initialize();
-	
-	// Метод для ЗАИМСТВОВАНИЯ ресурса другими компонентами
+	void initialize(); // Инициализация всей системы
+
+	// Делегирование API менеджерам (удобство для приложения)
+	bool addTask(TaskFunction function, TaskPriority priority);
 	UART_Resource& getUART();
 	void releaseUART();
 
-	// Методы для управления задачами (делегируются планировщику)
-	bool addTask(TaskFunction function, TaskPriority priority) {
-		return scheduler_.addTask(function, priority);
-	}
+	// Главный цикл системы
+	void run();
 
-	// Главный цикл ядра
-	void run() {
-		while(true) {
-			scheduler_.dispatch();
-		}
-	}
+	// Доступ к менеджерам (на случай сложной логики)
+	TaskManager& getTaskManager() { return taskManager_; }
+	ResourceManager& getResourceManager() { return resourceManager_; }
 
-	// Доступ к планировщику
-	Scheduler& getScheduler() { return scheduler_; }
-	
-	// Статический метод для доступа из ISR
-	static Scheduler* getSchedulerForISR() { return schedulerInstanceForISR_; }
+	// Статические методы для ISR
+	static TaskManager* getTaskManagerForISR();
+	static ResourceManager* getResourceManagerForISR();
 };
