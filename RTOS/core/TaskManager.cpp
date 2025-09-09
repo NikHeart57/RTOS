@@ -31,34 +31,46 @@ void TaskManager::tick() {
 	}
 }
 
-void TaskManager::dispatch() {
+void TaskManager::dispatch() 
+{
 	// Поиск задачи с наивысшим приоритетом, готовой к выполнению (READY)
 	int8_t highestPriorityTaskIndex = -1;
 	TaskPriority highestPriority = TaskPriority::IDLE;
 
-	for(uint8_t i = 0; i < taskCount; i++) {
+	for(uint8_t i = 0; i < taskCount; i++) 
+	{
 		Task* task = taskList[i];
-		if((task->state == TaskState::READY) && (task->priority > highestPriority)) {
+		if((task->state == TaskState::READY) && (task->priority > highestPriority))
+		{
 			highestPriority = task->priority;
 			highestPriorityTaskIndex = i;
 		}
 	}
 
 	// Если нашли готовую задачу - выполняем ее
-	if(highestPriorityTaskIndex >= 0) {
-		currentTask = taskList[highestPriorityTaskIndex];
-		currentTask->state = TaskState::RUNNING;
-		currentTask->lastRunTime = systemTicks;
+	if(highestPriorityTaskIndex >= 0)
+	{
+		if(highestPriorityTaskIndex >= 0) 
+		{
+			currentTask = taskList[highestPriorityTaskIndex];
+			currentTask->state = TaskState::RUNNING;
+			currentTask->lastRunTime = systemTicks;
 
-		// Выполняем саму функцию задачи
-		currentTask->function();
+			// Выполняем саму функцию задачи
+			currentTask->function();
 
-		// После выполнения переводим задачу обратно в состояние READY,
-		// если она не была переведена в SLEEPING или SUSPENDED внутри самой себя.
-		if(currentTask->state == TaskState::RUNNING) {
-			currentTask->state = TaskState::READY;
+			// После выполнения переводим задачу обратно в состояние READY,
+			// если она не была переведена в SLEEPING или SUSPENDED внутри самой себя.
+			if(currentTask->state == TaskState::RUNNING) 
+			{
+				currentTask->state = TaskState::READY;
+			}
+			currentTask = nullptr;
 		}
-		currentTask = nullptr;
+	}
+	else 
+	{
+		asm("nop");
 	}
 }
 

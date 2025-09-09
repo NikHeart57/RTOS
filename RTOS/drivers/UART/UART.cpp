@@ -208,12 +208,19 @@ void UART_SendBuffer(const uint8_t *buffer, uint16_t length)
  * @note Блокирует выполнение до получения данных
  * @warning Для 9-битного режима требует отдельной обработки
  */
-char UART_ReceiveByte(void) 
+char UART_ReceiveByte(void)
 {
-    while(!UART_DataAvailable());  // Ожидание данных
-    uint8_t data = uart_rx_buffer[uart_rx_tail];
-    uart_rx_tail = (uart_rx_tail + 1) % UART_RX_BUFFER_SIZE;
-    return data;
+	// Ожидаем данные БЕЗ запрета прерываний!
+	// Иначе мы заблокируем ISR, и данные никогда не появятся.
+	while(!UART_DataAvailable());
+
+	char receivedByte;
+	cli(); // Запрещаем прерывания на время манипуляции с буфером
+	receivedByte = uart_rx_buffer[uart_rx_tail];
+	uart_rx_tail = (uart_rx_tail + 1) % UART_RX_BUFFER_SIZE;
+	sei(); // Сразу же разрешаем прерывания
+
+	return receivedByte;
 }
 
 /**
@@ -222,23 +229,34 @@ char UART_ReceiveByte(void)
  * @param length Максимальная длина приема
  * @return Количество фактически принятых байт
  */
-uint8_t UART_ReceiveBuffer(uint8_t *buffer, uint16_t length) 
+uint8_t UART_ReceiveBuffer(uint8_t *buffer, uint16_t length)
 {
-    uint16_t i;
-    for(i = 0; i < length && UART_DataAvailable(); i++) {
-        buffer[i] = uart_rx_buffer[uart_rx_tail];
-        uart_rx_tail = (uart_rx_tail + 1) % UART_RX_BUFFER_SIZE;
-    }
-    return i;
+	if (buffer == NULL || length == 0) {
+		return 0;
+	}
+
+	uint16_t i = 0;
+	cli(); // Вход в критическую секцию
+	while (i < length && uart_rx_head != uart_rx_tail) {
+		buffer[i] = uart_rx_buffer[uart_rx_tail];
+		uart_rx_tail = (uart_rx_tail + 1) % UART_RX_BUFFER_SIZE;
+		i++;
+	}
+	sei(); // Выход из критической секции
+	return i;
 }
 
 /**
  * @brief Проверка наличия данных в буфере
  * @return Количество доступных байт (0 если буфер пуст)
  */
-uint8_t UART_DataAvailable(void) 
+uint8_t UART_DataAvailable(void)
 {
-    return (uart_rx_head != uart_rx_tail);
+	uint8_t available;
+	cli(); // Вход в критическую секцию
+	available = (uart_rx_head != uart_rx_tail);
+	sei(); // Выход из критической секции
+	return available;
 }
 
 /**
