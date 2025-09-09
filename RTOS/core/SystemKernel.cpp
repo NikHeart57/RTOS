@@ -3,7 +3,8 @@
 #include <avr/interrupt.h>
 
 // ISR таймера
-ISR(TIMER1_COMPA_vect) {
+ISR(TIMER2_COMP_vect) 
+{
 	SystemKernel::getTaskManagerForISR()->tick();
 }
 
@@ -19,12 +20,13 @@ SystemKernel::SystemKernel()
 
 void SystemKernel::initialize()
 {
-	// Инициализация таймера (перенесена из старого Scheduler::init())
-	// Настройка Timer1 для генерации прерывания по совпадению каждую 1 мс
-	TCCR1A = 0;
-	TCCR1B = (1 << WGM12) | (1 << CS11) | (1 << CS10); // CTC mode, prescaler 64
-	OCR1A = 249; // Compare value для 1ms: (16000000 / 64 / 1000) - 1 = 249
-	TIMSK = (1 << OCIE1A); // Enable compare match interrupt
+	cli();
+	
+	// Настройка Timer2 для генерации прерывания по совпадению каждую 1 мс
+	TCCR2 = (1 << WGM21);	// Режим CTC (сброс при совпадении с OCR2)
+	OCR2 = 124;				// Значение для сравнения: (16000000 / 128 / 1000) - 1 = 124
+	TIMSK |= (1 << OCIE2);	// Разрешить прерывание по совпадению с OCR2
+	TCCR2 |= (1 << CS22) | (1 << CS20); // Запустить таймер: режим CTC, предделитель 128
 
 	// Инициализация ресурсов
 	resourceManager_.initializeAll();

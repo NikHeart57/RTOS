@@ -3,7 +3,7 @@
 #include "ResourceManager.hpp"
 
 class SystemKernel {
-	private:
+private:
 	// ВЛАДЕНИЕ: Ядро владеет менеджерами.
 	TaskManager taskManager_;
 	ResourceManager resourceManager_;
@@ -12,7 +12,7 @@ class SystemKernel {
 	static TaskManager* taskManagerInstanceForISR_;
 	static ResourceManager* resourceManagerInstanceForISR_;
 
-	public:
+public:
 	SystemKernel();
 	void initialize(); // Инициализация всей системы
 
