@@ -157,6 +157,12 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="core\Mutex.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="core\Mutex.hpp">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="core\ResourceManager.cpp">
       <SubType>compile</SubType>
     </Compile>

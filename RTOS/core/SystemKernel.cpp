@@ -8,6 +8,7 @@ ISR(TIMER2_COMP_vect)
 	SystemKernel::getTaskManagerForISR()->tick();
 }
 
+
 // Инициализация статических членов
 TaskManager* SystemKernel::taskManagerInstanceForISR_ = nullptr;
 ResourceManager* SystemKernel::resourceManagerInstanceForISR_ = nullptr;
@@ -29,7 +30,7 @@ void SystemKernel::initialize()
 	TCCR2 |= (1 << CS22) | (1 << CS20); // Запустить таймер: режим CTC, предделитель 128
 
 	// Инициализация ресурсов
-	resourceManager_.initializeAll();
+	resourceManager_.initializeAllResources();
 	
 	sei(); // Глобальное разрешение прерываний
 }
@@ -45,10 +46,6 @@ UART_Resource& SystemKernel::getUART()
 	return resourceManager_.getUART();
 }
 
-void SystemKernel::releaseUART()
-{
-	resourceManager_.releaseUART();
-}
 
 // Главный цикл системы
 void SystemKernel::run()

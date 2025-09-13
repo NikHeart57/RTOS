@@ -42,6 +42,7 @@ SUBDIRS :=  \
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
+../core/Mutex.cpp \
 ../core/ResourceManager.cpp \
 ../core/SystemKernel.cpp \
 ../core/TaskManager.cpp \
@@ -58,6 +59,7 @@ ASM_SRCS +=
 
 
 OBJS +=  \
+core/Mutex.o \
 core/ResourceManager.o \
 core/SystemKernel.o \
 core/TaskManager.o \
@@ -67,6 +69,7 @@ main.o \
 resources/UART_Resource.o
 
 OBJS_AS_ARGS +=  \
+core/Mutex.o \
 core/ResourceManager.o \
 core/SystemKernel.o \
 core/TaskManager.o \
@@ -76,6 +79,7 @@ main.o \
 resources/UART_Resource.o
 
 C_DEPS +=  \
+core/Mutex.d \
 core/ResourceManager.d \
 core/SystemKernel.d \
 core/TaskManager.d \
@@ -85,6 +89,7 @@ main.d \
 resources/UART_Resource.d
 
 C_DEPS_AS_ARGS +=  \
+core/Mutex.d \
 core/ResourceManager.d \
 core/SystemKernel.d \
 core/TaskManager.d \
@@ -107,6 +112,13 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
+core/Mutex.o: ../core/Mutex.cpp
+	@echo Building file: $<
+	@echo Invoking: AVR8/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DF_CPU=16000000UL -DNDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include"  -Os -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=c++11 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
 core/ResourceManager.o: ../core/ResourceManager.cpp
 	@echo Building file: $<
 	@echo Invoking: AVR8/GNU C Compiler : 5.4.0

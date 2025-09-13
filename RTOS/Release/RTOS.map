@@ -25,14 +25,15 @@ Discarded input sections
 
  .data          0x00000000        0x0 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega32/avr5/crtatmega32.o
  .bss           0x00000000        0x0 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega32/avr5/crtatmega32.o
+ .text          0x00000000        0x0 core/Mutex.o
+ .data          0x00000000        0x0 core/Mutex.o
+ .bss           0x00000000        0x0 core/Mutex.o
  .text          0x00000000        0x0 core/ResourceManager.o
  .data          0x00000000        0x0 core/ResourceManager.o
  .bss           0x00000000        0x0 core/ResourceManager.o
  .text          0x00000000        0x0 core/SystemKernel.o
  .data          0x00000000        0x0 core/SystemKernel.o
  .bss           0x00000000        0x0 core/SystemKernel.o
- .text._ZN12SystemKernel20getTaskManagerForISREv
-                0x00000000        0xa core/SystemKernel.o
  .text._ZN12SystemKernel24getResourceManagerForISREv
                 0x00000000        0xa core/SystemKernel.o
  .text          0x00000000        0x0 core/TaskManager.o
@@ -105,6 +106,14 @@ Discarded input sections
  .text          0x00000000        0x0 main.o
  .data          0x00000000        0x0 main.o
  .bss           0x00000000        0x0 main.o
+ .text._Z14stressTestTaskv
+                0x00000000      0x192 main.o
+ .text._Z23priorityInheritanceTestv
+                0x00000000       0x6c main.o
+ .bss.stressFailures
+                0x00000000        0x4 main.o
+ .bss.stressSuccess
+                0x00000000        0x4 main.o
  .text          0x00000000        0x0 resources/UART_Resource.o
  .data          0x00000000        0x0 resources/UART_Resource.o
  .bss           0x00000000        0x0 resources/UART_Resource.o
@@ -266,6 +275,7 @@ user_signatures  0x00850000         0x00000400         rw !x
 Linker script and memory map
 
 LOAD C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega32/avr5/crtatmega32.o
+LOAD core/Mutex.o
 LOAD core/ResourceManager.o
 LOAD core/SystemKernel.o
 LOAD core/TaskManager.o
@@ -384,7 +394,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x916
+.text           0x00000000      0xc08
  *(.vectors)
  .vectors       0x00000000       0x54 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega32/avr5/crtatmega32.o
                 0x00000000                __vector_default
@@ -467,144 +477,153 @@ END GROUP
                 0x000000a8                __vector_20
                 0x000000ac                . = ALIGN (0x2)
  *(.text.*)
+ .text._ZN5Mutex4lockEm
+                0x000000ac      0x138 core/Mutex.o
+                0x000000ac                _ZN5Mutex4lockEm
+ .text._ZN5Mutex6unlockEv
+                0x000001e4       0x42 core/Mutex.o
+                0x000001e4                _ZN5Mutex6unlockEv
  .text._ZN15ResourceManagerC2Ev
-                0x000000ac       0x5e core/ResourceManager.o
-                0x000000ac                _ZN15ResourceManagerC1Ev
-                0x000000ac                _ZN15ResourceManagerC2Ev
+                0x00000226       0x62 core/ResourceManager.o
+                0x00000226                _ZN15ResourceManagerC1Ev
+                0x00000226                _ZN15ResourceManagerC2Ev
  .text._ZN15ResourceManager7getUARTEv
-                0x0000010a       0x22 core/ResourceManager.o
-                0x0000010a                _ZN15ResourceManager7getUARTEv
- .text._ZN15ResourceManager11releaseUARTEv
-                0x0000012c        0x6 core/ResourceManager.o
-                0x0000012c                _ZN15ResourceManager11releaseUARTEv
- .text._ZN15ResourceManager13initializeAllEv
-                0x00000132       0x20 core/ResourceManager.o
-                0x00000132                _ZN15ResourceManager13initializeAllEv
+                0x00000288        0x2 core/ResourceManager.o
+                0x00000288                _ZN15ResourceManager7getUARTEv
+ .text._ZN15ResourceManager13getUART_MutexEv
+                0x0000028a        0x4 core/ResourceManager.o
+                0x0000028a                _ZN15ResourceManager13getUART_MutexEv
+ .text._ZN15ResourceManager22initializeAllResourcesEv
+                0x0000028e       0x20 core/ResourceManager.o
+                0x0000028e                _ZN15ResourceManager22initializeAllResourcesEv
  .text.__vector_4
-                0x00000152       0x50 core/SystemKernel.o
-                0x00000152                __vector_4
+                0x000002ae       0x50 core/SystemKernel.o
+                0x000002ae                __vector_4
  .text._ZN12SystemKernelC2Ev
-                0x000001a2       0x34 core/SystemKernel.o
-                0x000001a2                _ZN12SystemKernelC2Ev
-                0x000001a2                _ZN12SystemKernelC1Ev
+                0x000002fe       0x34 core/SystemKernel.o
+                0x000002fe                _ZN12SystemKernelC2Ev
+                0x000002fe                _ZN12SystemKernelC1Ev
  .text._ZN12SystemKernel10initializeEv
-                0x000001d6       0x26 core/SystemKernel.o
-                0x000001d6                _ZN12SystemKernel10initializeEv
+                0x00000332       0x26 core/SystemKernel.o
+                0x00000332                _ZN12SystemKernel10initializeEv
  .text._ZN12SystemKernel7addTaskEPFvvE12TaskPriority
-                0x000001fc        0x4 core/SystemKernel.o
-                0x000001fc                _ZN12SystemKernel7addTaskEPFvvE12TaskPriority
+                0x00000358        0x4 core/SystemKernel.o
+                0x00000358                _ZN12SystemKernel7addTaskEPFvvE12TaskPriority
  .text._ZN12SystemKernel7getUARTEv
-                0x00000200        0x8 core/SystemKernel.o
-                0x00000200                _ZN12SystemKernel7getUARTEv
- .text._ZN12SystemKernel11releaseUARTEv
-                0x00000208        0x8 core/SystemKernel.o
-                0x00000208                _ZN12SystemKernel11releaseUARTEv
+                0x0000035c        0x8 core/SystemKernel.o
+                0x0000035c                _ZN12SystemKernel7getUARTEv
  .text._ZN12SystemKernel3runEv
-                0x00000210        0xa core/SystemKernel.o
-                0x00000210                _ZN12SystemKernel3runEv
+                0x00000364        0xa core/SystemKernel.o
+                0x00000364                _ZN12SystemKernel3runEv
+ .text._ZN12SystemKernel20getTaskManagerForISREv
+                0x0000036e        0xa core/SystemKernel.o
+                0x0000036e                _ZN12SystemKernel20getTaskManagerForISREv
  .text._ZN11TaskManagerC2Ev
-                0x0000021a       0x64 core/TaskManager.o
-                0x0000021a                _ZN11TaskManagerC2Ev
-                0x0000021a                _ZN11TaskManagerC1Ev
+                0x00000378       0x64 core/TaskManager.o
+                0x00000378                _ZN11TaskManagerC2Ev
+                0x00000378                _ZN11TaskManagerC1Ev
  .text._ZN11TaskManager4tickEv
-                0x0000027e       0x92 core/TaskManager.o
-                0x0000027e                _ZN11TaskManager4tickEv
+                0x000003dc       0x92 core/TaskManager.o
+                0x000003dc                _ZN11TaskManager4tickEv
  .text._ZN11TaskManager8dispatchEv
-                0x00000310       0xaa core/TaskManager.o
-                0x00000310                _ZN11TaskManager8dispatchEv
+                0x0000046e       0xaa core/TaskManager.o
+                0x0000046e                _ZN11TaskManager8dispatchEv
  .text._ZN11TaskManager7addTaskEPFvvE12TaskPriority
-                0x000003ba       0x62 core/TaskManager.o
-                0x000003ba                _ZN11TaskManager7addTaskEPFvvE12TaskPriority
+                0x00000518       0x62 core/TaskManager.o
+                0x00000518                _ZN11TaskManager7addTaskEPFvvE12TaskPriority
  .text._ZN11TaskManager5sleepEm
-                0x0000041c       0x20 core/TaskManager.o
-                0x0000041c                _ZN11TaskManager5sleepEm
+                0x0000057a       0x20 core/TaskManager.o
+                0x0000057a                _ZN11TaskManager5sleepEm
  .text._ZL20GPIO_GetPORTRegister9GPIO_Port
-                0x0000043c       0x1e drivers/GPIO/GPIO.o
+                0x0000059a       0x1e drivers/GPIO/GPIO.o
  .text._Z13GPIO_WritePin9GPIO_Port8GPIO_Pin10GPIO_State
-                0x0000045a       0x30 drivers/GPIO/GPIO.o
-                0x0000045a                _Z13GPIO_WritePin9GPIO_Port8GPIO_Pin10GPIO_State
+                0x000005b8       0x30 drivers/GPIO/GPIO.o
+                0x000005b8                _Z13GPIO_WritePin9GPIO_Port8GPIO_Pin10GPIO_State
  .text._Z12UART_Disablev
-                0x0000048a        0x8 drivers/UART/UART.o
-                0x0000048a                _Z12UART_Disablev
+                0x000005e8        0x8 drivers/UART/UART.o
+                0x000005e8                _Z12UART_Disablev
  .text._Z16UART_SetBaudRatem
-                0x00000492       0x28 drivers/UART/UART.o
-                0x00000492                _Z16UART_SetBaudRatem
+                0x000005f0       0x28 drivers/UART/UART.o
+                0x000005f0                _Z16UART_SetBaudRatem
  .text._Z9UART_Init10UART_Statem13UART_DataBits13UART_StopBits11UART_Parity14UART_Interrupt
-                0x000004ba       0x88 drivers/UART/UART.o
-                0x000004ba                _Z9UART_Init10UART_Statem13UART_DataBits13UART_StopBits11UART_Parity14UART_Interrupt
+                0x00000618       0x88 drivers/UART/UART.o
+                0x00000618                _Z9UART_Init10UART_Statem13UART_DataBits13UART_StopBits11UART_Parity14UART_Interrupt
  .text._Z13UART_SendByteh
-                0x00000542        0x8 drivers/UART/UART.o
-                0x00000542                _Z13UART_SendByteh
+                0x000006a0        0x8 drivers/UART/UART.o
+                0x000006a0                _Z13UART_SendByteh
  .text.__vector_13
-                0x0000054a       0x7c drivers/UART/UART.o
-                0x0000054a                __vector_13
+                0x000006a8       0x7c drivers/UART/UART.o
+                0x000006a8                __vector_13
  .text.__vector_15
-                0x000005c6       0x4e drivers/UART/UART.o
-                0x000005c6                __vector_15
+                0x00000724       0x4e drivers/UART/UART.o
+                0x00000724                __vector_15
  .text._Z8fastTaskv
-                0x00000614       0x70 main.o
-                0x00000614                _Z8fastTaskv
+                0x00000772       0x9e main.o
+                0x00000772                _Z8fastTaskv
  .text._Z8slowTaskv
-                0x00000684       0x70 main.o
-                0x00000684                _Z8slowTaskv
+                0x00000810       0x9e main.o
+                0x00000810                _Z8slowTaskv
+ .text._Z16resourceRaceTaskv
+                0x000008ae      0x128 main.o
+                0x000008ae                _Z16resourceRaceTaskv
  .text._Z9blinkTaskv
-                0x000006f4       0x28 main.o
-                0x000006f4                _Z9blinkTaskv
+                0x000009d6       0x28 main.o
+                0x000009d6                _Z9blinkTaskv
  .text.startup.main
-                0x0000071c       0x46 main.o
-                0x0000071c                main
- .text.startup._GLOBAL__sub_I_Kernel
-                0x00000762        0x8 main.o
- .text.exit._GLOBAL__sub_D_Kernel
-                0x0000076a        0x8 main.o
+                0x000009fe       0x56 main.o
+                0x000009fe                main
+ .text.startup._GLOBAL__sub_I_kernel
+                0x00000a54        0x8 main.o
+ .text.exit._GLOBAL__sub_D_kernel
+                0x00000a5c        0x8 main.o
  .text._ZN13UART_ResourceC2ERKNS_6ConfigE
-                0x00000772       0x14 resources/UART_Resource.o
-                0x00000772                _ZN13UART_ResourceC2ERKNS_6ConfigE
-                0x00000772                _ZN13UART_ResourceC1ERKNS_6ConfigE
+                0x00000a64       0x14 resources/UART_Resource.o
+                0x00000a64                _ZN13UART_ResourceC2ERKNS_6ConfigE
+                0x00000a64                _ZN13UART_ResourceC1ERKNS_6ConfigE
  .text._ZN13UART_ResourceD2Ev
-                0x00000786        0xc resources/UART_Resource.o
-                0x00000786                _ZN13UART_ResourceD2Ev
-                0x00000786                _ZN13UART_ResourceD1Ev
+                0x00000a78        0xc resources/UART_Resource.o
+                0x00000a78                _ZN13UART_ResourceD2Ev
+                0x00000a78                _ZN13UART_ResourceD1Ev
  .text._ZN13UART_Resource5startEv
-                0x00000792       0x3a resources/UART_Resource.o
-                0x00000792                _ZN13UART_Resource5startEv
+                0x00000a84       0x3a resources/UART_Resource.o
+                0x00000a84                _ZN13UART_Resource5startEv
  .text._ZN13UART_Resource5startEm
-                0x000007cc        0xe resources/UART_Resource.o
-                0x000007cc                _ZN13UART_Resource5startEm
+                0x00000abe        0xe resources/UART_Resource.o
+                0x00000abe                _ZN13UART_Resource5startEm
  .text._ZN13UART_Resource5printEPKc
-                0x000007da       0x40 resources/UART_Resource.o
-                0x000007da                _ZN13UART_Resource5printEPKc
+                0x00000acc       0x40 resources/UART_Resource.o
+                0x00000acc                _ZN13UART_Resource5printEPKc
  .text._ZN13UART_Resource7printlnEPKc
-                0x0000081a       0x28 resources/UART_Resource.o
-                0x0000081a                _ZN13UART_Resource7printlnEPKc
+                0x00000b0c       0x28 resources/UART_Resource.o
+                0x00000b0c                _ZN13UART_Resource7printlnEPKc
  .text.libgcc.div
-                0x00000842       0x44 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodsi4.o)
-                0x00000842                __udivmodsi4
- .text.libgcc   0x00000886        0xc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_tablejump2.o)
-                0x00000886                __tablejump2__
+                0x00000b34       0x44 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodsi4.o)
+                0x00000b34                __udivmodsi4
+ .text.libgcc   0x00000b78        0xc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_tablejump2.o)
+                0x00000b78                __tablejump2__
  .text.avr-libc
-                0x00000892       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(itoa_ncheck.o)
-                0x00000892                __itoa_ncheck
+                0x00000b84       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(itoa_ncheck.o)
+                0x00000b84                __itoa_ncheck
  .text.avr-libc
-                0x000008a8       0x34 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(utoa_ncheck.o)
-                0x000008a8                __utoa_ncheck
-                0x000008aa                __utoa_common
+                0x00000b9a       0x34 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(utoa_ncheck.o)
+                0x00000b9a                __utoa_ncheck
+                0x00000b9c                __utoa_common
  .text.avr-libc
-                0x000008dc       0x20 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(strrev.o)
-                0x000008dc                strrev
-                0x000008fc                . = ALIGN (0x2)
+                0x00000bce       0x20 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(strrev.o)
+                0x00000bce                strrev
+                0x00000bee                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x000008fc        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
-                0x000008fc                _exit
-                0x000008fc                exit
+ .fini9         0x00000bee        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+                0x00000bee                _exit
+                0x00000bee                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
  *(.fini7)
  *(.fini7)
  *(.fini6)
- .fini6         0x000008fc       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_dtors.o)
-                0x000008fc                __do_global_dtors
+ .fini6         0x00000bee       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_dtors.o)
+                0x00000bee                __do_global_dtors
  *(.fini6)
  *(.fini5)
  *(.fini5)
@@ -617,11 +636,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00000912        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+ .fini0         0x00000c04        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x00000916                _etext = .
+                0x00000c08                _etext = .
 
-.data           0x00800060       0x52 load address 0x00000916
+.data           0x00800060       0xc8 load address 0x00000c08
                 0x00800060                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -629,65 +648,73 @@ END GROUP
  *(.rodata)
  *(.rodata*)
  .rodata.str1.1
-                0x00800060       0x39 core/ResourceManager.o
+                0x00800060       0x1c core/ResourceManager.o
  .rodata.CSWTCH.13
-                0x00800099        0x6 drivers/GPIO/GPIO.o
+                0x0080007c        0x6 drivers/GPIO/GPIO.o
  .rodata.str1.1
-                0x0080009f       0x10 main.o
+                0x00800082       0xa3 main.o
+                                 0xa5 (size before relaxing)
  .rodata.str1.1
-                0x008000af        0x3 resources/UART_Resource.o
+                0x00800125        0x3 resources/UART_Resource.o
  *(.gnu.linkonce.r*)
-                0x008000b2                . = ALIGN (0x2)
-                0x008000b2                _edata = .
-                0x008000b2                PROVIDE (__data_end, .)
+                0x00800128                . = ALIGN (0x2)
+                0x00800128                _edata = .
+                0x00800128                PROVIDE (__data_end, .)
 
-.bss            0x008000b2      0x17d
-                0x008000b2                PROVIDE (__bss_start, .)
+.bss            0x00800128      0x187
+                0x00800128                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
  .bss._ZN12SystemKernel30resourceManagerInstanceForISR_E
-                0x008000b2        0x2 core/SystemKernel.o
-                0x008000b2                _ZN12SystemKernel30resourceManagerInstanceForISR_E
+                0x00800128        0x2 core/SystemKernel.o
+                0x00800128                _ZN12SystemKernel30resourceManagerInstanceForISR_E
  .bss._ZN12SystemKernel26taskManagerInstanceForISR_E
-                0x008000b4        0x2 core/SystemKernel.o
-                0x008000b4                _ZN12SystemKernel26taskManagerInstanceForISR_E
+                0x0080012a        0x2 core/SystemKernel.o
+                0x0080012a                _ZN12SystemKernel26taskManagerInstanceForISR_E
  .bss._ZL16uart_rx_callback
-                0x008000b6        0x2 drivers/UART/UART.o
+                0x0080012c        0x2 drivers/UART/UART.o
  .bss._ZL12uart_tx_tail
-                0x008000b8        0x1 drivers/UART/UART.o
+                0x0080012e        0x1 drivers/UART/UART.o
  .bss._ZL12uart_tx_head
-                0x008000b9        0x1 drivers/UART/UART.o
+                0x0080012f        0x1 drivers/UART/UART.o
  .bss._ZL12uart_rx_tail
-                0x008000ba        0x1 drivers/UART/UART.o
+                0x00800130        0x1 drivers/UART/UART.o
  .bss._ZL12uart_rx_head
-                0x008000bb        0x1 drivers/UART/UART.o
+                0x00800131        0x1 drivers/UART/UART.o
  .bss._ZL14uart_tx_buffer
-                0x008000bc       0x40 drivers/UART/UART.o
+                0x00800132       0x40 drivers/UART/UART.o
  .bss._ZL14uart_rx_buffer
-                0x008000fc       0x40 drivers/UART/UART.o
+                0x00800172       0x40 drivers/UART/UART.o
+ .bss._ZZ16resourceRaceTaskvE6taskId
+                0x008001b2        0x1 main.o
+ .bss._ZZ16resourceRaceTaskvE11initialized
+                0x008001b3        0x1 main.o
  .bss.itoa_buffer
-                0x0080013c       0x10 main.o
-                0x0080013c                itoa_buffer
- .bss.ledState  0x0080014c        0x1 main.o
-                0x0080014c                ledState
+                0x008001b4       0x10 main.o
+                0x008001b4                itoa_buffer
+ .bss.stressTotalAttempts
+                0x008001c4        0x4 main.o
+                0x008001c4                stressTotalAttempts
+ .bss.ledState  0x008001c8        0x1 main.o
+                0x008001c8                ledState
  .bss.slowCounter
-                0x0080014d        0x4 main.o
-                0x0080014d                slowCounter
+                0x008001c9        0x4 main.o
+                0x008001c9                slowCounter
  .bss.fastCounter
-                0x00800151        0x4 main.o
-                0x00800151                fastCounter
- .bss.Kernel    0x00800155       0xda main.o
-                0x00800155                Kernel
+                0x008001cd        0x4 main.o
+                0x008001cd                fastCounter
+ .bss.kernel    0x008001d1       0xde main.o
+                0x008001d1                kernel
  *(COMMON)
-                0x0080022f                PROVIDE (__bss_end, .)
-                0x00000916                __data_load_start = LOADADDR (.data)
-                0x00000968                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x008002af                PROVIDE (__bss_end, .)
+                0x00000c08                __data_load_start = LOADADDR (.data)
+                0x00000cd0                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x0080022f        0x0
+.noinit         0x008002af        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                PROVIDE (__noinit_end, .)
-                0x0080022f                _end = .
+                0x008002af                _end = .
                 [!provide]                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
@@ -729,8 +756,9 @@ END GROUP
 
 .comment        0x00000000       0x30
  *(.comment)
- .comment       0x00000000       0x30 core/ResourceManager.o
+ .comment       0x00000000       0x30 core/Mutex.o
                                  0x31 (size before relaxing)
+ .comment       0x00000030       0x31 core/ResourceManager.o
  .comment       0x00000030       0x31 core/SystemKernel.o
  .comment       0x00000030       0x31 core/TaskManager.o
  .comment       0x00000030       0x31 drivers/GPIO/GPIO.o

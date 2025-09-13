@@ -2,6 +2,8 @@
 # Automatically-generated file. Do not edit or delete the file
 ################################################################################
 
+core\Mutex.cpp
+
 core\ResourceManager.cpp
 
 core\SystemKernel.cpp

@@ -1,3 +1,4 @@
+
 #include "ResourceManager.hpp"
 
 ResourceManager::ResourceManager() : UART_(UART_Resource::Config{})
@@ -7,23 +8,17 @@ ResourceManager::ResourceManager() : UART_(UART_Resource::Config{})
 
 UART_Resource& ResourceManager::getUART()
 {
-	if (isUARTBusy_)
-	{
-		// В будущем здесь можно добавить логику ожидания
-		UART_.println("ERROR: UART is already busy!");
-	}
-	isUARTBusy_ = true;
+	// Теперь используем мьютекс вместо флага
 	return UART_;
 }
 
-void ResourceManager::releaseUART()
+Mutex& ResourceManager::getUART_Mutex()
 {
-	isUARTBusy_ = false;
+	return UART_mutex_; // Исправлено имя
 }
 
-void ResourceManager::initializeAll()
+void ResourceManager::initializeAllResources()
 {
-	// Инициализация всех ресурсов
 	UART_.start(57600);
 	UART_.println("ResourceManager initialized");
 	

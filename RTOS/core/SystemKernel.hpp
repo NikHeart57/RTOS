@@ -19,7 +19,6 @@ public:
 	// Делегирование API менеджерам (удобство для приложения)
 	bool addTask(TaskFunction function, TaskPriority priority);
 	UART_Resource& getUART();
-	void releaseUART();
 
 	// Главный цикл системы
 	void run();
